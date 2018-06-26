@@ -1,0 +1,193 @@
+
+/* BEFORE CLICKING */
+.sliderBefore {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+.sliderBefore:hover {
+  opacity: 1;
+}
+
+/* Chrome */
+.sliderBefore::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0px;
+  height: 0px;
+  border: 0;
+  background: none;
+}
+
+/* Firefox */
+.sliderBefore::-moz-range-thumb {
+  width: 0px;
+  height: 0px;
+  border: 0;
+  background: none;
+}
+
+/* IE */
+.sliderBefore::-ms-thumb {
+  border: none;
+  height: 0px;
+  width: 0px;
+  border-radius: 50%;
+  background: none;
+}
+
+
+
+
+/* //////////////////////////////////////////////////////////////////// */
+/* AFTER CLICKING */
+.sliderAfter {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  cursor: pointer;
+}
+
+.sliderAfter:hover {
+  opacity: 1;
+}
+
+/* Chrome */
+.sliderAfter::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+}
+
+/* Firefox */
+.sliderAfter::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+}
+
+/* IE */
+.sliderAfter::-ms-thumb {
+  border: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #4CAF50;
+}
+
+
+/* LABEL */
+label {
+  /*width:100%;
+  height:100%;
+  background: #4CAF50;*/
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* //////////////////////////////////////////////////////////////////// */
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.sliderMinValue {
+  /*border: 2px dashed #fc5858;*/
+  width: 50%;
+  display:inline;
+}
+
+.sliderMaxValue {
+  /*border: 2px dashed #74f442;*/
+  width: 50%;
+  display:inline;
+  text-align: right;
+}
+
+input:checked + .slider {
+  background-color: powderblue;/*#2196F3;*/
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px powderblue;/*#2196F3;*/
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+/* //////////////////////////////////////////////////////////////////// */
+/* SAM */
+.floatingSAM {
+  width: 10%;
+  max-width: 105px;
+  float: left;
+  text-align: center;
+  margin-right: 5px;
+}
+
+.SAMBox {
+  /* This will force the container to respect the height of all elements within it, regardless of floating elements. */
+  overflow: hidden;
+}
+
+.thlButton {
+  padding: 6px 6px;
+  border-radius: 5px;
+  background-color: #e7e7e7;
+  color: black;
+}
+
+

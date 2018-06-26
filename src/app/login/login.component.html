@@ -1,0 +1,53 @@
+<div class="container">
+  <app-alert></app-alert>
+  <h4>{{ 'LoginHeadline' | translate }}</h4>
+  <form (ngSubmit)="loginForm.valid && login(loginForm)" #loginForm="ngForm" novalidate>
+
+    <label for="email">{{ 'EmailOrNick' | translate }}</label>
+    <div class="input-group">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+          <span *ngIf="useEmailToLogin === true">
+            {{ 'EmailAddress' | translate}}
+          </span>
+          <span *ngIf="useEmailToLogin === false">
+            {{ 'Nickname' | translate}}
+          </span>
+
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a (click)="toggleLoginCredentials()">
+            <span *ngIf="useEmailToLogin === true">
+            {{ 'Nickname' | translate}}
+          </span>
+            <span *ngIf="useEmailToLogin === false">
+            {{ 'EmailAddress' | translate}}
+          </span>
+          </a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type="text" class="form-control" id="email" placeholder="{{ 'EmailPlaceHolder' | translate}}"
+             required name="email" ngModel #emailModel="ngModel">
+      <div *ngIf="loginForm.submitted && !emailModel.valid" class="alert alert-danger">
+        {{ 'EmailRequired' | translate }}
+      </div>
+    </div><!-- /input-group -->
+
+
+    <div class="form-group">
+      <label for="password">{{ 'Password' | translate }}</label>
+      <input type="password" class="form-control" id="password" placeholder="{{ 'PasswordPlaceHolder' | translate }}"
+             required name="password" ngModel #passwordModel="ngModel">
+      <div *ngIf="loginForm.submitted && !passwordModel.valid" class="alert alert-danger">
+        {{ 'PasswordRequired' | translate }}
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Login</button>
+    <app-spinner></app-spinner>
+  </form>
+
+  {{ 'pwForgotten' | translate }} <a routerLink="/requestpwreset">{{ 'clickHere' | translate }}</a>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div>
+    <h1 class="centeredText">{{ 'TrackyourStress' | translate }}</h1>
+    <br>
+    <h4 class="trackYourStuffText">{{ 'HomeText1' | translate }}
+      <a routerLink="/about">{{ 'More' | translate }}</a>
+    </h4>
+
+    <br><br><br>
+    <div class="centeredImage">
+      <img src="assets/images/logo-uni-ulm.svg" width="23%" class="firstLogo">
+      <!--<img src="assets/images/logo_tinnitus.png" width="23%">-->
+    </div>
+    <br><br><br><br>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <a routerLink="/reg"><img src="assets/images/register.png" class="littleImages"></a>
+      <h3>{{ 'Register' | translate }}</h3>
+      {{ 'HomeText2' | translate }}
+    </div>
+
+    <div class="col-lg-4">
+      <img src="assets/images/download.png" class="littleImages">
+    <h3>{{ 'DownLoadApp' | translate }}</h3>
+    {{ 'HomeText3' | translate }}
+    </div>
+
+    <div class="col-lg-4">
+      <img src="assets/images/track.png" class="littleImages">
+      <h3>{{ 'TrackyourStress' | translate}}</h3>
+      {{ 'HomeText4' | translate }}
+    </div>
+  </div>
+
+
+</div>

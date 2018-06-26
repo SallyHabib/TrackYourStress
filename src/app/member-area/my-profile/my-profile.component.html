@@ -1,0 +1,64 @@
+<div class="container">
+  <app-spinner></app-spinner>
+
+  <!-- Button-Navbar -->
+  <div class="btn-group container" role="group" aria-label="...">
+    <button type="button" class="btn btn-default" routerLink="/member/myprofile/changepw">{{ 'ChangePW' | translate}}</button>
+    <div *ngIf="!profileIsChangable">
+      <button type="button" class="btn btn-default" (click)="makeProfileEditable()">{{ 'EditProfile' | translate}}</button>
+    </div>
+    <div *ngIf="profileIsChangable">
+      <button class="btn btn-default" form="profileFormID">{{ 'SaveProfile' | translate}}</button>
+    </div>
+  </div>
+
+  <form (ngSubmit)="profileForm.valid && changeProfile(profileForm)" #profileForm="ngForm" novalidate id="profileFormID">
+    <img src="/assets/images/if_Account_2202250.png"/>
+
+    <div class="form-group">
+      <label for="name">{{ 'Nickname' | translate}}</label>
+      <input type="text" class="form-control" id="name" required name="name" [ngModel]="name" #nameModel="ngModel"
+             [disabled]="!profileIsChangable">
+      <div *ngIf="profileForm.submitted && !nameModel.valid" class="alert alert-danger">
+        {{ 'NicknameRequired' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">{{ 'EmailAddress' | translate}}</label>
+      <input type="text" class="form-control" id="email" required name="email" [ngModel]="email" #emailModel="ngModel"
+             disabled>
+    </div>
+
+    <div class="form-group">
+      <label for="firstname">{{ 'Firstname' | translate}}</label>
+      <input type="text" class="form-control" id="firstname" required name="firstname" [ngModel]="firstname"
+             #firstnameModel="ngModel" [disabled]="!profileIsChangable">
+      <div *ngIf="profileForm.submitted && !firstnameModel.valid" class="alert alert-danger">
+        {{ 'FirstnameRequired' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="lastname">{{ 'Lastname' | translate}}</label>
+      <input type="text" class="form-control" id="lastname" required name="lastname" [ngModel]="lastname"
+             #lastnameModel="ngModel" [disabled]="!profileIsChangable">
+      <div *ngIf="profileForm.submitted && !lastnameModel.valid" class="alert alert-danger">
+        {{ 'LastnameRequired' | translate}}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="sexPickerID">{{ 'Sex' | translate}}</label>
+      <select multiple class="form-control" id="sexPickerID" name="sexPickerID" required>
+        <option [disabled]="!profileIsChangable" [selected]="whichSex[0] === 1"
+                (click)="checkSex(0)">{{ 'NotSpecified' | translate}}</option>
+        <option [disabled]="!profileIsChangable" [selected]="whichSex[1] === 1"
+                (click)="checkSex(1)">{{ 'Male' | translate}}</option>
+        <option [disabled]="!profileIsChangable" [selected]="whichSex[2] === 1"
+                (click)="checkSex(2)">{{ 'Female' | translate}}</option>
+      </select>
+    </div>
+  </form>
+
+</div>

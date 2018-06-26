@@ -1,0 +1,10 @@
+
+
+Erledigt:
+- iOS <b> Tags
+- Texte in /about + iOS
+- bugfixes
+- Datenanalyse => Entsprechend Study ändern und Regel in postman ändern (Regel ist in GIT gespeichert)
+- alle Projektdaten Rüdiger zukommen lassen => liegt alles in GIT
+- neues Target einrichten (Homepage) - um das generelle Klonen zu testen => eventuell neues Target auf johannesschobel.com/tyt ?
+- thl Fragebogen

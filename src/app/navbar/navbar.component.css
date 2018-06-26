@@ -1,0 +1,70 @@
+.navbar-default {
+  background-color: #1a67b7;
+  border-color: #1a67b7;
+}
+
+
+/* brand */
+.navbar-default .navbar-brand {
+  color: white;
+}
+/* hover brand */
+.navbar-default .navbar-brand:hover {
+  color: white;
+  opacity: 0.75;
+}
+
+
+/* all text-colors */
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  background: #1a67b7;
+}
+/* hovering of text-colors */
+.navbar-default .navbar-nav > li > a:hover {
+  color: white;
+  opacity: 0.75;
+  background: #1a67b7;
+}
+
+
+/* active tabs of the navbar */
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background: #07417c;
+}
+
+
+/* dropdown-menu */
+.navbar-nav > li > .dropdown-menu {
+  background: #1a67b7;
+}
+/* dropdown-menu entries */
+.navbar-default .navbar-nav .dropdown-menu > li > a {
+  color: white;
+  background: #1a67b7;
+}
+/* hover dropdown-menu */
+.navbar-default .navbar-nav .dropdown-menu > li > a:hover {
+  color: #ffffff;
+  opacity: 0.75;
+}
+/* active dropdown-menu */
+.navbar-default .navbar-nav > .dropdown > .dropdown-menu > .active > a,
+.navbar-default .navbar-nav > .dropdown > .dropdown-menu > .active > a:hover,
+.navbar-default .navbar-nav > .dropdown > .dropdown-menu > .active > a:focus {
+  background: #07417c;
+}
+
+
+/* collapsing icon */
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+/* hover over collapsing icon */
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #07417c;
+}

@@ -1,0 +1,29 @@
+.appIcon {
+  float: right;
+  margin-left:15px;
+}
+
+
+.littleImages {
+  float: left;
+  margin-right: 5px;
+}
+
+.centeredText {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 60px;
+}
+
+.trackYourStuffText {
+  text-align: center;
+}
+
+.centeredImage {
+  text-align:center;
+}
+
+.firstLogo {
+  margin-right: 75px;
+}
+

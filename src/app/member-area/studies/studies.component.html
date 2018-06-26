@@ -1,0 +1,95 @@
+<div class="container">
+
+  <!-- Button-Navbar -->
+  <div class="btn-group" role="group" aria-label="..." *ngIf="pagination.total_pages !== 1">
+    <div *ngIf="pagination.current_page !== 0">
+      <p>{{ 'Page' | translate }} {{pagination.current_page}} {{ 'Of' | translate }} {{pagination.total_pages}}</p>
+    </div>
+    <button type="button" class="btn btn-default" routerLink="/member/studies"
+            [disabled]="pagination.current_page === 1" (click)="changePage(0)">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> {{ 'Prev' | translate }}
+    </button>
+    <button type="button" class="btn btn-default" routerLink="/member/studies"
+            [disabled]="pagination.current_page === pagination.total_pages" (click)="changePage(1)">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {{ 'Next' | translate }}
+    </button>
+  </div>
+
+  <h2>{{ 'AddStudies' | translate }} <app-spinner></app-spinner></h2>
+  <p>{{ 'SubmitByClick' | translate }}</p>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th>{{ 'Picture' | translate }}</th>
+      <th>{{ 'Name' | translate }}</th>
+      <th>{{ 'Private' | translate }}</th>
+      <th>{{ 'Running' | translate }}</th>
+      <th>{{ 'Accesstype' | translate }}</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let studie of studies" class="pointer" data-toggle="modal" data-target="#subscribeModal"
+        (click)="changeSelectedStudy(studie.name, studie.id, studie.accesstype)">
+      <td align="center"><img src="{{studie.picture}}" width="100" height="100"></td>
+      <td align="center">{{studie.name}}</td>
+      <td align="center">
+        <div *ngIf="studie.isPrivate === 1; else publicTag" class="glyphicon glyphicon-ok"></div>
+        <ng-template #publicTag>
+          <div class="glyphicon glyphicon-remove"></div>
+        </ng-template>
+      </td>
+      <td align="center">
+        <div *ngIf="studie.isRunning === true; else closedTag" class="glyphicon glyphicon-ok"></div>
+        <ng-template #closedTag>
+          <div class="glyphicon glyphicon-remove"></div>
+        </ng-template>
+      </td>
+      <td align="center">
+        <ng-template [ngIf]="studie.accesstype == null">
+          <div class="glyphicon glyphicon-remove"></div>
+        </ng-template>
+        <ng-template [ngIf]="studie.accesstype == 'password'">
+          <div class="glyphicon glyphicon-lock"></div>
+        </ng-template>
+        <ng-template [ngIf]="studie.accesstype == 'invite'">
+          <div class="glyphicon glyphicon-envelope"></div>
+        </ng-template>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- Subscribe modal -->
+<div class="modal fade" id="subscribeModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">{{ 'SubscribeToStudy' | translate }}</h5>
+      </div>
+
+      <div class="modal-body">
+        <div [innerHTML]=" 'SubscribeToStudySure' | translate:selectedStudyNameJson "></div>
+
+        <!-- private study -->
+        <div *ngIf="isSelectedStudyPrivate">
+          <input type="text" class="form-control" placeholder="{{ 'Password' | translate }}" [(ngModel)]="studyPassword"
+                 #studyPasswordModel="ngModel" name="studyPasswordName">
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="subscribeToStudy()">{{ 'Subscribe' | translate }}</button>
+      </div>
+
+    </div>
+  </div>
+</div>

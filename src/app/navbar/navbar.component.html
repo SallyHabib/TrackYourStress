@@ -1,0 +1,49 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
+              aria-expanded="false">
+        <!--<span class="sr-only">Toggle navigation</span>-->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="">TrackYourStress</a>
+    </div>
+
+    <!-- collapsing tag -->
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-left">
+
+        <li routerLinkActive="active">
+          <a routerLink="/home">
+            {{ 'Home' | translate }}
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+
+        <li class="dropdown" *ngIf="isLoggedIn; else login" routerLinkActive="active">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">{{ 'MemberSection' | translate }}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li routerLinkActive="active"><a routerLink="/member/myquestionnaires">{{ 'MyQuestionnaires' | translate}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active"><a routerLink="/member/mystudies">{{ 'MyStudies' | translate }}</a></li>
+            <li routerLinkActive="active"><a routerLink="/member/myprofile">{{ 'MyProfile' | translate }}</a></li>
+          </ul>
+        </li>
+
+        <ng-template #login>
+          <li routerLinkActive="active"><a routerLink="/login" routerLinkActive="active">{{ 'Login' | translate }}</a></li>
+        </ng-template>
+
+        <li routerLinkActive="active"><a routerLink="/reg">{{ 'Register' | translate }}</a></li>
+        <li routerLinkActive="active"><a routerLink="/about">{{ 'About' | translate }}</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="isLoggedIn"><a routerLink="/logout">{{ 'Logout' | translate }}</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,25 @@
+.footer {
+  background-color: #1a67b7;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 50px;
+  width: 100%;
+  overflow: hidden;
+}
+.center {
+  height: 100%;
+  width: 50%;
+  font-size: 12px;
+  /*border: 2px dashed #fc5858;*/
+}
+
+.flags {
+  text-align: center;
+  width: 50%;
+  /*border: 2px dashed #25db40;*/
+}
+
+.footerTextColor {
+  color: #ffffff;
+}

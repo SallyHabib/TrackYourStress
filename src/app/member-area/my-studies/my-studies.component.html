@@ -1,0 +1,87 @@
+<div class="container">
+  <!-- Spinner -->
+  <div class="container">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- Button-Navbar -->
+  <div class="btn-group" role="group" aria-label="...">
+    <button type="button" class="btn btn-default" routerLink="/member/studies">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> {{ 'Add' | translate }}
+    </button>
+  </div>
+
+  <!-- user has studies -->
+  <div *ngIf="studies.length !== 0">
+    <h2>{{ 'MyStudies' | translate }}</h2>
+    <p>{{ 'AllStudies' | translate }}</p>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>{{ 'Picture' | translate }}</th>
+          <th>{{ 'Name' | translate }}</th>
+          <th>{{ 'Private' | translate }}</th>
+          <th>{{ 'Running' | translate }}</th>
+          <th>{{ 'Unsubscribe' | translate }}</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let studie of studies">
+          <td align="center"><img src="{{studie.picture}}" width="100" height="100"></td>
+          <td align="center">{{studie.name}}</td>
+          <td align="center">
+            <div *ngIf="studie.isPrivate === 1; else publicTag" class="glyphicon glyphicon-ok"></div>
+            <ng-template #publicTag>
+              <div class="glyphicon glyphicon-remove"></div>
+            </ng-template>
+          </td>
+          <td align="center">
+            <div *ngIf="studie.isRunning === true; else closedTag" class="glyphicon glyphicon-ok"></div>
+            <ng-template #closedTag>
+              <div class="glyphicon glyphicon-remove"></div>
+            </ng-template>
+          </td>
+          <td align="center">
+            <button type="button" class="btn btn-default" (click)="changeSelectedStudy(studie.name, studie.id)"
+                    data-toggle="modal" data-target="#unsubscribeModal">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ 'Unsubscribe' | translate }}
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- user has no studies -->
+  <ng-template [ngIf]="studies.length === 0 && !httpRequestIsLoading">
+    <div class="container">
+      {{ 'SubmitToStudy' | translate }}
+    </div>
+  </ng-template>
+</div>
+
+<!-- Unsubscribe modal -->
+<div class="modal fade" id="unsubscribeModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">{{ 'UnsubscribeStudy' | translate }}</h5>
+      </div>
+
+      <div class="modal-body">
+        <div [innerHTML]=" 'UnsubscribeStudySure' | translate:selectedStudyNameJson"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="unsubscribeFromStudy()">{{ 'Unsubscribe' | translate }}</button>
+      </div>
+
+    </div>
+  </div>
+</div>

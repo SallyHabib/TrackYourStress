@@ -1,0 +1,247 @@
+<div class="container">
+  <app-spinner></app-spinner>
+</div>
+
+<div class="container">
+  <ul class="list-group">
+    <form (ngSubmit)="answersForm.valid && generateJsonData()" #answersForm="ngForm" novalidate>
+      <div *ngFor="let questStruct of questionnaireStructures">
+
+        <!-- HEADLINE -->
+        <ng-template [ngIf]="questStruct.headline">
+          <li class="list-group-item" style="background-color:powderblue;">
+            <div innerHTML={{questStruct.headline}}></div>
+          </li>
+        </ng-template>
+
+        <!-- TEXT -->
+        <ng-template [ngIf]="questStruct.text">
+          <li class="list-group-item">
+            <div innerHTML={{questStruct.text}}></div>
+          </li>
+        </ng-template>
+
+        <!-- QUESTION -->
+        <ng-template [ngIf]="questStruct.question">
+          <li class="list-group-item">
+            <div innerHTML={{questStruct.question}}></div>
+
+            <!-- SingleChoice -->
+            <ul *ngIf="questStruct.questionType === 'SingleChoice'" class="list-group">
+              <li *ngFor="let answer of questStruct.answers; let i = index" class="list-group-item"
+                  (click)="checkSingleChoice(questStruct, i)">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="singleChoice{{questStruct.id}}"
+                           (change)="checkSingleChoice(questStruct, i)"
+                           [value]="questStruct.id + i"
+                           ngModel #singleChoiceModel="ngModel"
+                           [required]="questStruct.required === 1">
+                    {{answer}}
+                    <div *ngIf="answersForm.submitted && singleChoiceModel.invalid" class="alert alert-danger">
+                      {{ 'OneAnswerIsRequired' | translate }}
+                    </div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+
+            <!-- MultipleChoice -->
+            <ul *ngIf="questStruct.questionType === 'MultipleChoice'" class="list-group">
+              <li *ngFor="let answer of questStruct.answers; let i = index" class="list-group-item"
+                  (click)="checkMultipleChoice(questStruct, i)">
+                <div class="radio">
+                  <label>
+                    <input type="checkbox" name="multChoice{{questStruct.id}}"
+                           (change)="checkMultipleChoice(questStruct, i)"
+                           [value]="questStruct.id + i"
+                           ngModel #multipleChoiceModel="ngModel"
+                           [required]="questStruct.required === 1"
+                    >
+                    <!--[checked]="questStruct.isMultipleChecked[i] === true"-->
+                    {{answer}}
+                    <div *ngIf="answersForm.submitted && multipleChoiceModel.invalid" class="alert alert-danger">
+                      {{ 'OneAnswerIsRequired' | translate }}
+                    </div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+
+            <!-- Slider -->
+            <div *ngIf="questStruct.questionType === 'Slider'">
+              <input type="range" (click)="changeSliderappearance(questStruct)"
+                     name="slider{{questStruct.id}}"
+                     [className]="questStruct.sliderclass"
+                     min="{{questStruct.sliderValues[0]}}"
+                     max="{{questStruct.sliderValues[1]}}"
+                     step="{{questStruct.sliderValues[2]}}"
+                     [(ngModel)]="questStruct.sliderValue" #sliderModel="ngModel"
+                     [required]="questStruct.required === 1"
+              >
+              <div>
+                <div class="sliderMinValue">
+                  {{questStruct.answers[0]}}
+                </div>
+                <div class="sliderMaxValue pull-right">
+                  {{questStruct.answers[1]}}
+                </div>
+              </div>
+
+              <div *ngIf="answersForm.submitted && sliderModel.invalid" class="alert alert-danger">
+                {{ 'RequiredField' | translate }}
+              </div>
+            </div>
+
+            <!-- TextString/TextArea -->
+            <div *ngIf="questStruct.questionType === 'TextString' || questStruct.questionType === 'TextArea'">
+              <input type="text" class="form-control" name="textString{{questStruct.id}}"
+                     [(ngModel)]="questStruct.textStringAnswer" #textStringModel="ngModel"
+                     (keypress)="updateCollected_at(questStruct)"
+                     [required]="questStruct.required === 1"
+              >
+              <div *ngIf="answersForm.submitted && textStringModel.invalid" class="alert alert-danger">
+                {{ 'RequiredField' | translate }}
+              </div>
+            </div>
+
+            <!-- TextDate -->
+            <div *ngIf="questStruct.questionType === 'TextDate'">
+              <input type="date" class="form-control" name="textDate{{questStruct.id}}"
+                     [(ngModel)]="questStruct.textDateAnswer" #textDateModel="ngModel"
+                     (keypress)="updateCollected_at(questStruct)"
+                     (click)="updateCollected_at(questStruct)"
+                     [required]="questStruct.required === 1"
+              >
+              <div *ngIf="answersForm.submitted && textDateModel.invalid" class="alert alert-danger">
+                {{ 'RequiredField' | translate }}
+              </div>
+            </div>
+
+            <!-- YesNoSwitch -->
+            <ul *ngIf="questStruct.questionType === 'YesNoSwitch'" class="list-group">
+              <li *ngFor="let answer of questStruct.answers; let i = index" class="list-group-item"
+                  (click)="checkSingleChoice(questStruct, i)">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="singleChoice{{questStruct.id}}"
+                           (change)="checkSingleChoice(questStruct, i)"
+                           [value]="questStruct.id + i"
+                           ngModel #singleChoiceModel="ngModel"
+                           [required]="questStruct.required === 1"
+                    >
+                    <!--[checked]="questStruct.isSingleChecked[i] === true"-->
+                    {{answer}}
+                    <div *ngIf="answersForm.submitted && singleChoiceModel.invalid" class="alert alert-danger">
+                      {{ 'RequiredField' | translate }}
+                    </div>
+                  </label>
+                </div>
+              </li>
+            </ul>
+
+
+            <!-- SAMScaleFace -->
+            <div *ngIf="questStruct.questionType === 'SAMScaleFace'" class="SAMBox">
+              <div *ngFor="let index of [1,2,3,4,5,6,7,8,9]; let even = even; let pictureIndex = index"
+                   class="floatingSAM">
+                <img *ngIf="even" src="/assets/images/SAMScaleFace/SAM-VP-9_{{((pictureIndex + 1) / 2) + 0.5}}.png"
+                     width="85%">
+                <img *ngIf="!even" src="/assets/images/SAMScaleFace/SAM-VP-9_1.png" style="visibility: hidden;"
+                     width="85%">
+                <input type="radio" class="radioStyleClass" name="samFace{{questStruct.id}}"
+                       (change)="checkSam(questStruct, index-1, true)"
+                       [value]="questStruct.id + index-1"
+                       ngModel #samFaceModel="ngModel"
+                       [required]="questStruct.required === 1">
+                <div *ngIf="answersForm.submitted && samFaceModel.invalid" class="alert alert-danger">
+                  {{ 'OneAnswerIsRequired' | translate }}
+                </div>
+                <!-- [checked]="questStruct.isSamFaceChecked[index-1] === true"-->
+              </div>
+            </div>
+
+            <!-- SAMScaleBody -->
+            <div *ngIf="questStruct.questionType === 'SAMScaleBody'" class="SAMBox">
+              <div *ngFor="let index of [1,2,3,4,5,6,7,8,9]; let even = even; let pictureIndex = index"
+                   class="floatingSAM">
+                <img *ngIf="even" src="/assets/images/SAMScaleBody/SAM-A-9_{{((pictureIndex + 1) / 2) + 0.5}}.png"
+                     width="90%">
+                <img *ngIf="!even" src="/assets/images/SAMScaleBody/SAM-A-9_1.png" style="visibility: hidden;"
+                     width="90%">
+                <input type="radio" class="radioStyleClass" name="samBody{{questStruct.id}}"
+                       [checked]="questStruct.isSamBodyChecked[index-1] === true"
+                       (change)="checkSam(questStruct, index-1, false)"
+                       [value]="questStruct.id + index-1"
+                       ngModel #samBodyModel="ngModel"
+                       [required]="questStruct.required === 1">
+                <div *ngIf="answersForm.submitted && samBodyModel.invalid" class="alert alert-danger">
+                  {{ 'OneAnswerIsRequired' | translate }}
+                </div>
+              </div>
+            </div>
+
+            <!-- THLItem -->
+            <div *ngIf="questStruct.questionType === 'THLItem'">
+              <div *ngFor="let rows of questStruct.thlRows">
+                {{rows}}
+                <!-- show the buttons for the years-->
+                <span *ngFor="let yearIndex of generateTHLArray(questStruct.thlMin, questStruct.thlMax)">
+                  <input type="button" class="thlButton" data-toggle="modal" data-target="#thlModal"
+                          (click)="changeSelectedTHLItem(questStruct, rows, yearIndex)"
+                           [value]="getValueOfTHLButton(questStruct, yearIndex, rows)">
+                </span>
+              </div>
+            </div>
+
+            <!-- TextInteger -->
+            <div *ngIf="questStruct.questionType === 'TextInteger'">
+              <input type="number" [(ngModel)]="questStruct.textInteger" #textIntegerModel="ngModel"
+                     (ngModelChange)="updateIntegerValue(questStruct)"
+                     name="textInteger{{questStruct.id}}"
+                     [required]="questStruct.required === 1">
+              <div *ngIf="answersForm.submitted && textIntegerModel.invalid" class="alert alert-danger">
+                {{ 'OneAnswerIsRequired' | translate }}
+              </div>
+            </div>
+
+          </li>
+        </ng-template>
+      </div>
+      <br><button type="submit" class="btn btn-success">{{ 'Save' | translate }}</button>
+    </form>
+  </ul>
+</div>
+
+
+<!-- modal for the THLItem -->
+<div class="modal fade" id="thlModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">{{ 'pleaseSelect' | translate }}</h5>
+      </div>
+
+      <div class="modal-body">
+        <div>
+          <button type="button" class="btn btn-default" (click)="checkTHLItem('X')" data-dismiss="modal">
+            "X" {{ 'always' | translate}}
+          </button>
+          <br><br>
+          <button type="button" class="btn btn-default" (click)="checkTHLItem('S')" data-dismiss="modal">
+            "S" {{ 'rarely' | translate}}
+          </button>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'Close' | translate }}</button>
+      </div>
+
+    </div>
+  </div>
+</div>

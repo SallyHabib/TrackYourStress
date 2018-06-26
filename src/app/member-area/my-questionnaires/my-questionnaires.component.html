@@ -1,0 +1,47 @@
+<div class="container">
+  <!-- Spinner -->
+  <div class="container">
+    <app-spinner></app-spinner>
+  </div>
+
+  <!-- user has questionnaires -->
+  <div *ngIf="questionnaires.length !== 0">
+    <h2>{{ 'MyQuestionnaires' | translate}}</h2>
+    <p>{{ 'AllQuests' | translate}}</p>
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>{{ 'Name' | translate}}</th>
+        <th>{{ 'Running' | translate}}</th>
+        <th>{{ 'Type' | translate}}</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr *ngFor="let questionnaire of questionnaires" (click)="changeRouteToQuestStruct(questionnaire)" class="pointer">
+        <td align="center">{{questionnaire.title}}</td>
+        <td align="center">
+          <div *ngIf="questionnaire.is_active === 1; else notActive" class="glyphicon glyphicon-ok"></div>
+          <ng-template #notActive>
+            <div class="glyphicon glyphicon-remove"></div>
+          </ng-template>
+        </td>
+        <td align="center">
+          <div *ngIf="questionnaire.is_onetime === 1; else multipleQuestionnaire" class="glyphicon glyphicon-arrow-right"></div>
+          <ng-template #multipleQuestionnaire>
+            <div class="glyphicon glyphicon-repeat"></div>
+          </ng-template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- user has no questionnaires -->
+  <ng-template [ngIf]="questionnaires.length === 0 && !httpRequestIsLoading">
+    <div class="container">
+      {{ 'SubmitToStudy' | translate}}
+    </div>
+  </ng-template>
+
+</div>

@@ -1,0 +1,10 @@
+/* is needed for the correct position of the <footer> */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* is needed for the correct position of the <footer> */
+body {
+  padding-bottom:50px;   /* Height of the footer */
+}

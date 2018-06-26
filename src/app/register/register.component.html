@@ -1,0 +1,53 @@
+<div class="container">
+  <app-alert></app-alert>
+  <form (ngSubmit)="registrationForm.valid && register(registrationForm)" #registrationForm="ngForm" novalidate>
+    <div class="form-group">
+      <label for="email">{{ 'EmailAddress' | translate }}</label>
+      <input type="text" class="form-control" id="email" placeholder="{{ 'EmailPlaceHolder' | translate}}" required name="email"
+             ngModel #emailModel="ngModel">
+      <div *ngIf="registrationForm.submitted && !emailModel.valid" class="alert alert-danger">
+        {{ 'EmailRequired' | translate }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">{{ 'Password' | translate }}</label>
+      <input type="password" class="form-control" id="password" placeholder="{{ 'Password' | translate }}" required name="password"
+             ngModel #passwordModel="ngModel" minlength="8">
+      <div *ngIf="registrationForm.submitted && passwordModel.errors?.required" class="alert alert-danger">
+        {{ 'PasswordRequired' | translate }}
+      </div>
+      <div *ngIf="registrationForm.submitted && passwordModel.errors?.minlength" class="alert alert-danger">
+        {{ 'minPWLength' | translate }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="passwordAgain">{{ 'PasswordAgain' | translate }}</label>
+      <input type="password" class="form-control" id="passwordAgain" placeholder="{{ 'Password' | translate }}" required
+             name="passwordAgain" ngModel #passwordAgainModel="ngModel" minlength="8">
+      <div *ngIf="registrationForm.submitted && passwordAgainModel.errors?.required" class="alert alert-danger">
+        {{ 'PasswordAgainRequired' | translate }}
+      </div>
+      <div *ngIf="registrationForm.submitted && passwordAgainModel.errors?.minlength" class="alert alert-danger">
+        {{ 'minPWLength' | translate }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="nickname">{{ 'Nickname' | translate }}</label>
+      <input type="text" class="form-control" id="nickname" placeholder="{{ 'Nickname' | translate }}" required
+             name="nickname" ngModel #nicknameModel="ngModel">
+      <div *ngIf="registrationForm.submitted && !nicknameModel.valid" class="alert alert-danger">
+        {{ 'NicknameRequired' | translate }}
+      </div>
+    </div>
+
+    <p>
+      {{ 'nicknameInfo' | translate }}
+    </p>
+
+    <button type="submit" class="btn btn-success">{{ 'toRegister' | translate }}</button>
+    <app-spinner></app-spinner>
+  </form>
+</div>

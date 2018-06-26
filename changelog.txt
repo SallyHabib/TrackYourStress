@@ -1,0 +1,14 @@
+Version 1.0.0 (22.02.2019 erstellt)
+
+- bugfix in Registrierung (min 8 Zeichen)
+- Texte im about-bereich
+- email kann verifiziert werden (link in einer mail enthalten)
+- Fragebögen angepasst
+- HTML-Tags in Fragen/Überschriften (zb <b>)
+- Token wird jetzt korrekt erneuert
+- bugfix: Wenn Fragen "required" sind wird das entsprechend angezeigt
+- passwort ändern
+- passwort zurücksetzen
+- Registrierung bestätigen möglich
+- Übersetzung in Deutsch/Englisch
+- DeviceInfos werden geschickt
