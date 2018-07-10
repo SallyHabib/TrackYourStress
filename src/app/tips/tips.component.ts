@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MyApiService } from '../services/API/my-api.service';
 import {TranslateService} from '@ngx-translate/core';
+import { SpinnerService } from '../services/spinner.service';
 import { Pagination } from '../models/pagination';
 import { Tip } from '../models/tips';
 
@@ -13,17 +14,21 @@ import { Tip } from '../models/tips';
 export class TipsComponent implements OnInit {
     data=[]
     tipsData: Tip[] =[]
-    tipDataAtrr='zozo'
+    pagination: Pagination = new Pagination(0, 0, 0, 0, 0);
   constructor(
     private myapiService: MyApiService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private spinnerService: SpinnerService,
+
   ) { }
 
   ngOnInit() {
-    const req = this.myapiService.getTips();
+      this.getAllTips(2)
+}
+  getAllTips(pageNumber: number){
+    const req = this.myapiService.getTips(pageNumber);
     req.subscribe( resp => {
-      const tipsDataResp = resp.body['data'];
-      //console.log(tipsDataResp)
+      
 
       if(this.tipsData.length!== 0){
           this.tipsData=[]
@@ -43,11 +48,29 @@ export class TipsComponent implements OnInit {
         );
       }
       console.log(this.tipsData)
+      const paginationHttp = resp['body']['meta']['pagination'];
+      this.pagination = new Pagination(
+        paginationHttp['total'],
+        paginationHttp['count'],
+        paginationHttp['per_page'],
+        paginationHttp['current_page'],
+        paginationHttp['total_pages']
+      );
     
     }, err => {
       const status = err['status'];
       console.log('error')
     });
   }
-
-}
+  changePage(direction: number) {
+    if (direction === 0) {
+      this.spinnerService.showSpinner();
+      this.tipsData = [];
+      this.getAllTips(this.pagination.current_page - 1);
+    } else if (direction === 1) {
+      this.spinnerService.showSpinner();
+      this.tipsData = [];
+      this.getAllTips(this.pagination.current_page + 1);
+    }
+  }
+  }

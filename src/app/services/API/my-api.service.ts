@@ -12,8 +12,8 @@ export class MyApiService {
     private globals: Globals
   ) { }
 
-  getTips(){
-    const tipsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips';
+  getTips(page:number){
+    const tipsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips?'+ 'page=' + page;
     return this.http.get(tipsUrl, {observe: 'response'});
   }
   getmyProfile() {
