@@ -12,6 +12,10 @@ export class MyApiService {
     private globals: Globals
   ) { }
 
+  getTips(){
+    const tipsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips';
+    return this.http.get(tipsUrl, {observe: 'response'});
+  }
   getmyProfile() {
     const token = localStorage.getItem('token');
     const myProfileURL = this.globals.apiEndPoint + '/api/v1/my/profile?token=' + token;

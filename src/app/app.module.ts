@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { NavbarService } from './services/navbar.service';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { TipsComponent } from './tips/tips.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './services/spinner.service';
 import { MemberAreaComponent } from './member-area/member-area/member-area.component';
@@ -58,6 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     NavbarComponent,
     HomeComponent,
     AboutComponent,
+    TipsComponent,
     SpinnerComponent,
     MemberAreaComponent,
     LogoutComponent,
