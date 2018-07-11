@@ -1,0 +1,14 @@
+<div class="container">
+<tbody>
+    <tr *ngFor="let tipData of tipsData" class="autoBreak" data-toggle="modal">
+        <p>
+      <td align="center">{{tipData.title | translate}}</td>
+      <br>
+      <td align="center">{{tipData.goal | translate}}</td>
+      <a href={{tipData.links}}>Click here for details</a>
+        </p>
+        <hr>
+    </tr>
+    </tbody>
+    
+</div>

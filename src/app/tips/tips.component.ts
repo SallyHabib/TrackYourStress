@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MyApiService } from '../services/API/my-api.service';
-import {TranslateService} from '@ngx-translate/core';
 import { SpinnerService } from '../services/spinner.service';
 import { Pagination } from '../models/pagination';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {ISubscription} from 'rxjs/Subscription';
 import { Tip } from '../models/tips';
 
 @Component({
@@ -15,12 +16,15 @@ export class TipsComponent implements OnInit {
     data=[]
     tipsData: Tip[] =[]
     pagination: Pagination = new Pagination(0, 0, 0, 0, 0);
+    linkDetail="loading...."
   constructor(
     private myapiService: MyApiService,
     private translate: TranslateService,
     private spinnerService: SpinnerService,
 
-  ) { }
+  ) {
+    
+   }
 
   ngOnInit() {
       this.getAllTips(2)
@@ -36,18 +40,18 @@ export class TipsComponent implements OnInit {
       const tipsData = resp.body['data'];
      
       for (const tipData of tipsData) {
-      
+       let linkDetail= "https://"+tipData['links']['self']
         this.tipsData.push(
          new Tip(
              tipData['id'],
              tipData['attributes']['title'],
              tipData['attributes']['name'],
              tipData['attributes']['goal'],
-             tipData['links']['self'],
+             linkDetail,
          )
         );
       }
-      console.log(this.tipsData)
+      console.log(this.tipsData[0].name)
       const paginationHttp = resp['body']['meta']['pagination'];
       this.pagination = new Pagination(
         paginationHttp['total'],

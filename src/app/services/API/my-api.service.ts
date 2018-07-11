@@ -14,7 +14,9 @@ export class MyApiService {
 
   getTips(page:number){
     const tipsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips?'+ 'page=' + page;
-    return this.http.get(tipsUrl, {observe: 'response'});
+    const headers = new HttpHeaders().set('Accept-Language', this.translate.currentLang);
+    return this.http.get(tipsUrl, {observe: 'response', headers: headers});
+    //return this.http.get(tipsUrl, {observe: 'response'});
   }
   getmyProfile() {
     const token = localStorage.getItem('token');
