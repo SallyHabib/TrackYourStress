@@ -4,7 +4,7 @@ import { MyApiService } from '../services/API/my-api.service';
 import { SpinnerService } from '../services/spinner.service';
 import { Pagination } from '../models/pagination';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
-import {ISubscription} from 'rxjs/Subscription';
+import { Router } from '@angular/router';
 import { Tip } from '../models/tips';
 
 @Component({
@@ -17,17 +17,19 @@ export class TipsComponent implements OnInit {
     tipsData: Tip[] =[]
     pagination: Pagination = new Pagination(0, 0, 0, 0, 0);
     linkDetail="loading...."
+    selectedTipId=0
   constructor(
     private myapiService: MyApiService,
     private translate: TranslateService,
     private spinnerService: SpinnerService,
+    private router: Router
 
   ) {
     
    }
 
   ngOnInit() {
-      this.getAllTips(2)
+      this.getAllTips(1)
 }
   getAllTips(pageNumber: number){
     const req = this.myapiService.getTips(pageNumber);
@@ -76,5 +78,14 @@ export class TipsComponent implements OnInit {
       this.tipsData = [];
       this.getAllTips(this.pagination.current_page + 1);
     }
+  }
+  getTipDetails(tip:number){
+    this.router.navigate(['/tipsDetails'+"/"+tip]);
+  //   const req = this.myapiService.getTipsDetails(tip);
+  //   req.subscribe( resp => {
+  //     const tipsDetails = resp.body['data'];
+  //     console.log(tipsDetails)
+  //   }
+  // );
   }
   }

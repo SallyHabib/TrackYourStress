@@ -14,8 +14,16 @@ export class MyApiService {
 
   getTips(page:number){
     const tipsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips?'+ 'page=' + page;
+    console.log(this.translate.currentLang)
     const headers = new HttpHeaders().set('Accept-Language', this.translate.currentLang);
     return this.http.get(tipsUrl, {observe: 'response', headers: headers});
+    //return this.http.get(tipsUrl, {observe: 'response'});
+  }
+  getTipsDetails(tip:number){
+    const tipsDetailsUrl = 'https://api.dummy.trackyourhealth.net/api/v1/tips/'+ tip;
+    console.log(this.translate.currentLang)
+    const headers = new HttpHeaders().set('Accept-Language', this.translate.currentLang);
+    return this.http.get(tipsDetailsUrl, {observe: 'response', headers: headers});
     //return this.http.get(tipsUrl, {observe: 'response'});
   }
   getmyProfile() {

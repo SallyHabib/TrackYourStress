@@ -7,6 +7,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { TipsComponent } from './tips/tips.component';
+import { TipsDetailsComponent } from './tips-details/tips-details.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {RequestPwresetComponent} from './request-pwreset/request-pwreset.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'requestpwreset', component: RequestPwresetComponent},
   { path: 'about', component: AboutComponent },
   {path: 'tips',component: TipsComponent},
+  {path: 'tipsDetails/:id',component: TipsDetailsComponent},
 
   // else
   { path: '**', component: PageNotFoundComponent }
