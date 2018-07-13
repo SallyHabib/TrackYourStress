@@ -6,6 +6,7 @@ import { Pagination } from '../models/pagination';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Tip } from '../models/tips';
+import {ISubscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-tips',
@@ -18,6 +19,8 @@ export class TipsComponent implements OnInit {
     pagination: Pagination = new Pagination(0, 0, 0, 0, 0);
     linkDetail="loading...."
     selectedTipId=0
+    langChangeSubscription: ISubscription;
+
   constructor(
     private myapiService: MyApiService,
     private translate: TranslateService,
@@ -25,7 +28,9 @@ export class TipsComponent implements OnInit {
     private router: Router
 
   ) {
-    
+     this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.ngOnInit();
+    });
    }
 
   ngOnInit() {
