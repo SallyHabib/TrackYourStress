@@ -1,14 +1,14 @@
 <div class="container">
 <tbody>
     <tr *ngFor="let tipData of tipsData" class="pointer" data-toggle="modal">
-        <p>
-      <td  align="center"><font color='1a67b7'><i>{{tipData.title}}</i></font> </td>
+        <div class="card">
+      <td  align="center"><b><font color='1a67b7' size="3.5" ><i>{{tipData.title}}</i></font></b> </td>
       <br>
       <td align="center">{{tipData.goal}}</td>
       <!--<button type="button" class="btn btn-success" data-dismiss="modal" (click)=" getTipDetails(tipData.id)">{{ 'Click here for details' | translate }}</button>-->
       <!--<a href={{tipData.links}}>Click here for details</a>-->
       <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]">{{ 'click here for details' | translate }}</a></li>
-        </p>
+      </div>
         <hr>
     </tr>
     </tbody>
