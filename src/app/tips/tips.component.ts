@@ -29,7 +29,7 @@ export class TipsComponent implements OnInit {
    }
 
   ngOnInit() {
-      this.getAllTips(1)
+      this.getAllTips(2)
 }
   getAllTips(pageNumber: number){
     const req = this.myapiService.getTips(pageNumber);
