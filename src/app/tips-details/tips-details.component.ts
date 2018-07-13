@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MyApiService } from '../services/API/my-api.service';
 import { TipDetails } from '../models/tipsDetails';
 
+
+
 @Component({
   selector: 'app-tips-details',
   templateUrl: './tips-details.component.html',
