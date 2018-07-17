@@ -7,11 +7,14 @@ import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import { Router } from '@angular/router';
 import { Tip } from '../models/tips';
 import {ISubscription} from 'rxjs/Subscription';
+import {DialogService} from "ng2-bootstrap-modal";
+import {TipsDialogComponent} from "./tipsDialog.component"
 
 @Component({
   selector: 'app-tips',
   templateUrl: './tips.component.html',
-  styleUrls: ['./tips.component.css']
+  styleUrls: ['./tips.component.css'],
+  providers:[MyApiService,DialogService]
 })
 export class TipsComponent implements OnInit {
     data=[]
@@ -20,12 +23,13 @@ export class TipsComponent implements OnInit {
     linkDetail="loading...."
     selectedTipId=0
     langChangeSubscription: ISubscription;
-
+    
   constructor(
     private myapiService: MyApiService,
     private translate: TranslateService,
     private spinnerService: SpinnerService,
-    private router: Router
+    private router: Router,
+    private dialogService: DialogService
 
   ) {
      this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -35,6 +39,7 @@ export class TipsComponent implements OnInit {
 
   ngOnInit() {
       this.getAllTips(2)
+      
 }
   getAllTips(pageNumber: number){
     const req = this.myapiService.getTips(pageNumber);
@@ -84,13 +89,16 @@ export class TipsComponent implements OnInit {
       this.getAllTips(this.pagination.current_page + 1);
     }
   }
-  getTipDetails(tip:number){
-    this.router.navigate(['/tipsDetails'+"/"+tip]);
+  getTipDetails(data:string){
+    //console.log(Error)
+   //this.router.navigate(['/tipsDetails'+"/"+tip]);
   //   const req = this.myapiService.getTipsDetails(tip);
   //   req.subscribe( resp => {
   //     const tipsDetails = resp.body['data'];
   //     console.log(tipsDetails)
   //   }
   // );
+  console.log(data)
+    this.dialogService.addDialog(TipsDialogComponent,{message:"zzzzz"});
   }
   }

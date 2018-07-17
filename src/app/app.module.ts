@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AlertComponent } from './alert/alert.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AppRoutingModule } from './/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UserService } from './services/API/user.service';
@@ -45,6 +45,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import {DeviceDetectorModule} from 'ngx-device-detector';
 import {Globals} from './GlobalVars/globals';
 import {QuestionnaireService} from './services/questionnaire.service';
+import {TipsDialogComponent} from "./tips/tipsDialog.component"
+import {BootstrapModalModule} from "ng2-bootstrap-modal"
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -76,7 +78,8 @@ export function createTranslateLoader(http: HttpClient) {
     ReverifyComponent,
     ChangePasswordComponent,
     RequestPwresetComponent,
-    PasswordResetComponent
+    PasswordResetComponent,
+    TipsDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -84,6 +87,7 @@ export function createTranslateLoader(http: HttpClient) {
     EmailRoutingModule,
     MemberRoutingModule,
     AppRoutingModule,
+    BootstrapModalModule,
 
     FormsModule,
     HttpClientModule,
@@ -106,6 +110,7 @@ export function createTranslateLoader(http: HttpClient) {
     AuthGuardService,
     TranslateService,
     QuestionnaireService,
+    //DialogService,
 
     // API
     MyApiService,
@@ -116,6 +121,9 @@ export function createTranslateLoader(http: HttpClient) {
 
     // global vars
     Globals
+  ],
+  entryComponents:[
+    TipsDialogComponent
   ],
   bootstrap: [AppComponent]
 })
