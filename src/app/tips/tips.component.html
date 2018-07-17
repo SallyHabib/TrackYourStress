@@ -5,7 +5,7 @@
       <td  align="center"><b><font color='1a67b7' size="3.5" ><i>{{tipData.title}}</i></font></b> </td>
       <br>
       <td align="center">{{tipData.goal}}</td>
-      <button type="button" class="close" (click)="getTipDetails(tipData.title)">{{ 'Click here for details' | translate }}</button>
+      <button type="button" class="btn btn-success" data-dismiss="modal" (click)=" getTipDetails(tipData.title)">{{ 'Click here for details' | translate }}</button>
       <!--<a href={{tipData.links}}>Click here for details</a>-->
      <!-- <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]"><font color='1a67b7'>{{ 'More' | translate }}</font></a></li> -->
       </div>

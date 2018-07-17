@@ -39,7 +39,7 @@ export class TipsComponent implements OnInit {
 
   ngOnInit() {
       this.getAllTips(2)
-      
+
 }
   getAllTips(pageNumber: number){
     const req = this.myapiService.getTips(pageNumber);
@@ -99,6 +99,6 @@ export class TipsComponent implements OnInit {
   //   }
   // );
   console.log(data)
-    this.dialogService.addDialog(TipsDialogComponent,{message:"zzzzz"});
+    this.dialogService.addDialog(TipsDialogComponent,{message:data});
   }
   }
