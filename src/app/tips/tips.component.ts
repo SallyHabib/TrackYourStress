@@ -9,6 +9,7 @@ import { Tip } from '../models/tips';
 import {ISubscription} from 'rxjs/Subscription';
 import {DialogService} from "ng2-bootstrap-modal";
 import {TipsDialogComponent} from "./tipsDialog.component"
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-tips',
@@ -23,6 +24,8 @@ export class TipsComponent implements OnInit {
     linkDetail="loading...."
     selectedTipId=0
     langChangeSubscription: ISubscription;
+    faInfoCircle = faInfoCircle;
+    isSyncAnimated:boolean
     
   constructor(
     private myapiService: MyApiService,
@@ -34,6 +37,7 @@ export class TipsComponent implements OnInit {
   ) {
      this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.ngOnInit();
+      this.isSyncAnimated=false
     });
    }
 
@@ -89,7 +93,7 @@ export class TipsComponent implements OnInit {
       this.getAllTips(this.pagination.current_page + 1);
     }
   }
-  getTipDetails(data:string){
+  getTipDetails(id:number){
     //console.log(Error)
    //this.router.navigate(['/tipsDetails'+"/"+tip]);
   //   const req = this.myapiService.getTipsDetails(tip);
@@ -98,7 +102,9 @@ export class TipsComponent implements OnInit {
   //     console.log(tipsDetails)
   //   }
   // );
-  console.log(data)
-    this.dialogService.addDialog(TipsDialogComponent,{message:data});
+  console.log(id)
+  // this.isSyncAnimated=!this.isSyncAnimated
+    this.dialogService.addDialog(TipsDialogComponent,{message:id});
+   // this.isSyncAnimated=false
   }
   }

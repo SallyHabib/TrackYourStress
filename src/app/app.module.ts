@@ -47,6 +47,7 @@ import {Globals} from './GlobalVars/globals';
 import {QuestionnaireService} from './services/questionnaire.service';
 import {TipsDialogComponent} from "./tips/tipsDialog.component"
 import {BootstrapModalModule} from "ng2-bootstrap-modal"
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -88,6 +89,7 @@ export function createTranslateLoader(http: HttpClient) {
     MemberRoutingModule,
     AppRoutingModule,
     BootstrapModalModule,
+    FontAwesomeModule,
 
     FormsModule,
     HttpClientModule,
