@@ -18,7 +18,7 @@
      <!-- <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]"><font color='1a67b7'>{{ 'More' | translate }}</font></a></li> -->
      <div class="icon" >
            <!-- <i class="fas fa-info-circle" ></i>-->
-        <fa-icon [icon]="faInfoCircle" size="lg" color="111111" [spin]="isSyncAnimated" (click)="getTipDetails(tipData.id)"></fa-icon>
+        <fa-icon [icon]="faInfoCircle" size="lg" [spin]="isSyncAnimated" (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
     </div>
       <br>

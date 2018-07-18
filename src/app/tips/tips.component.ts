@@ -25,15 +25,15 @@ export class TipsComponent implements OnInit {
     selectedTipId=0
     langChangeSubscription: ISubscription;
     faInfoCircle = faInfoCircle;
-    isSyncAnimated:boolean
+    public isSyncAnimated:boolean
+  
     
   constructor(
     private myapiService: MyApiService,
     private translate: TranslateService,
     private spinnerService: SpinnerService,
     private router: Router,
-    private dialogService: DialogService
-
+    private dialogService: DialogService,
   ) {
      this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.ngOnInit();
@@ -103,8 +103,16 @@ export class TipsComponent implements OnInit {
   //   }
   // );
   console.log(id)
-  // this.isSyncAnimated=!this.isSyncAnimated
+    this.isSyncAnimated=true
     this.dialogService.addDialog(TipsDialogComponent,{message:id});
-   // this.isSyncAnimated=false
+    console.log(this.isSyncAnimated)
   }
+  public setvalue() {
+    this.isSyncAnimated = false;
+    return this.isSyncAnimated
+  }
+  public getValue(){
+    return this.isSyncAnimated
+  }
+
   }
