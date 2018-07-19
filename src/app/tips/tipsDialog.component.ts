@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 import { MyApiService } from '../services/API/my-api.service';
 import { TipDetails } from '../models/tipsDetails';
-import {TipsComponent} from './tips.component'
 
 
 export interface TipsDialog{
@@ -11,20 +10,12 @@ export interface TipsDialog{
 
 @Component({
     selector: 'app-tips',
-    template: `<div class="modal-dialog">
-    <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" (click)="close();closeAnim();" >&times;</button>
-         <h4 class="modal-title">{{message}}</h4>
-       </div>
- </div>`
+    templateUrl:'./tipsDialog.component.html'
   })
 
   export class TipsDialogComponent extends DialogComponent<TipsDialog, null> implements TipsDialog, OnInit{
     message:number
     tipsDataDetails: TipDetails
-    TipsComponent: TipsComponent
-    
     constructor(
         dialogService: DialogService,
         private myapiService: MyApiService, 
@@ -51,8 +42,8 @@ export interface TipsDialog{
 
     })
 }
-closeAnim(){
-   console.log(TipsComponent.prototype.setvalue());
-   console.log(TipsComponent.prototype.isSyncAnimated.valueOf());
-}
+// closeAnim(){
+//    console.log(TipsComponent.prototype.setvalue());
+//    console.log(TipsComponent.prototype.isSyncAnimated.valueOf());
+// }
   }

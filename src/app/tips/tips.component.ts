@@ -105,14 +105,14 @@ export class TipsComponent implements OnInit {
   console.log(id)
     this.isSyncAnimated=true
     this.dialogService.addDialog(TipsDialogComponent,{message:id});
-    console.log(this.isSyncAnimated)
+    // console.log(this.isSyncAnimated)
   }
-  public setvalue() {
-    this.isSyncAnimated = false;
-    return this.isSyncAnimated
-  }
-  public getValue(){
-    return this.isSyncAnimated
-  }
+  // public setvalue() {
+  //   this.isSyncAnimated = false;
+  //   return this.isSyncAnimated
+  // }
+  // public getValue(){
+  //   return this.isSyncAnimated
+  // }
 
   }

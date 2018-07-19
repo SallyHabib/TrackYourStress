@@ -1,7 +1,11 @@
-<div class="modal-dialog">
-    <div class="modal-content">
-    <p>{{message}}</p>
-        
-    </div>
-</div>
-    
+
+ <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header">
+             <button type="button" class="close" (click)="close()" >&times;</button>
+             <h4 class="modal-title"> <font color='1a67b7' size="3.5"><b>{{tipsDataDetails?.title}}</b></font></h4>
+                <br>
+                <td align="left">{{tipsDataDetails?.text}}</td>
+           </div>
+     </div>
+     </div>

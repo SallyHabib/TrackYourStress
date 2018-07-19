@@ -36,3 +36,18 @@
     margin: 1px 1px;
 }
 .button5 {border-radius: 50%;}
+
+.icon:active {
+    width: 100px;
+    height: 25px;
+    background-color: transparent;
+    font-weight: bold;
+    position: relative;
+    animation: spin infinite
+}
+
+/* Standard syntax */
+@keyframes spin {
+    from {transform:rotate(0deg);}
+    to {transform:rotate(360deg);}
+}
