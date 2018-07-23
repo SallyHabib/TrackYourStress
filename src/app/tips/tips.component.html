@@ -6,6 +6,9 @@
       ></script>
 </head>
 <div class="container">
+    <div *ngIf="chart">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div>
 <tbody>
     <tr *ngFor="let tipData of tipsData" class="pointer" data-toggle="modal">
         <div class="card">
@@ -14,7 +17,7 @@
       <td align="center">{{tipData.goal}}</td>
     <!--  <button type="button" class="w3-button w3-ripple w3-red" data-dismiss="modal" (click)=" getTipDetails(tipData.id)">{{ 'Click here for details' | translate }}</button>-->
      <!-- <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]"><font color='1a67b7'>{{ 'More' | translate }}</font></a></li> -->
-     <div class="icon" >
+     <div class="icon">
        
           <!--  <i class="fas fa-info-circle  faa-pulse animated"></i> -->
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>

@@ -10,6 +10,27 @@ import {ISubscription} from 'rxjs/Subscription';
 import {DialogService} from "ng2-bootstrap-modal";
 import {TipsDialogComponent} from "./tipsDialog.component"
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { Chart } from 'chart.js';
+
+// window.onload = function() {
+
+//   var btnContainer =  document.getElementById("myIcon")
+//   console.log(btnContainer)
+  
+//   // Get all buttons with class="btn" inside the container
+  
+  
+//   // Loop through the buttons and add the active class to the current/clicked button
+  
+//     btnContainer.addEventListener("click", function() {
+//       console.log("ghhna")
+//       var current = document.getElementsByClassName("iconNon");
+//       console.log(current)
+//       current[0].className = current[0].className.replace("iconNon", "iconActive");
+//       this.className += "active";
+//     });
+  
+//   }
 
 @Component({
   selector: 'app-tips',
@@ -26,6 +47,9 @@ export class TipsComponent implements OnInit {
     langChangeSubscription: ISubscription;
     faInfoCircle = faInfoCircle;
     public isSyncAnimated:boolean
+    weatherDates = []
+    //chart=Chart
+    chart=false
   
     
   constructor(
@@ -38,11 +62,16 @@ export class TipsComponent implements OnInit {
      this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.ngOnInit();
       this.isSyncAnimated=false
+      this.chart=false
+      
     });
    }
 
   ngOnInit() {
       this.getAllTips(2)
+      // console.log(this.chart)
+      // this.chartView()
+      // console.log(this.chart)
 
 }
   getAllTips(pageNumber: number){
@@ -107,6 +136,40 @@ export class TipsComponent implements OnInit {
     this.dialogService.addDialog(TipsDialogComponent,{message:id});
     // console.log(this.isSyncAnimated)
   }
+  chartView(){
+    this.chart=true;
+    new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: ["lolo","lo"],
+        datasets: [
+          { 
+            data: [39,41,38,35],
+            borderColor: "#3cba9f",
+            fill: false
+          },
+          { 
+            data: [12,17,18,10],
+            borderColor: "#ffcc00",
+            fill: false
+          },
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [{
+            display: true
+          }],
+          yAxes: [{
+            display: true
+          }],
+        }
+      }
+    });
+  }
   // public setvalue() {
   //   this.isSyncAnimated = false;
   //   return this.isSyncAnimated
@@ -114,5 +177,5 @@ export class TipsComponent implements OnInit {
   // public getValue(){
   //   return this.isSyncAnimated
   // }
-
+ 
   }
