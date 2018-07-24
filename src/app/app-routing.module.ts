@@ -10,6 +10,7 @@ import { TipsComponent } from './tips/tips.component';
 import { TipsDetailsComponent } from './tips-details/tips-details.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import {RequestPwresetComponent} from './request-pwreset/request-pwreset.component';
+import { q03S02 } from './q03-s02/q03-S02.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'requestpwreset', component: RequestPwresetComponent},
   { path: 'about', component: AboutComponent },
   {path: 'tips',component: TipsComponent},
+  {path: 'answersQuestion2',component: q03S02},
   {path: 'tipsDetails/:id',component: TipsDetailsComponent},
 
   // else

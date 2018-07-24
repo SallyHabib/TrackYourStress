@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.trackyourstress.org'
+  apiUrl: 'https://api.dummy.trackyourhealth.net'
 };

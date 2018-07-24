@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { TipsComponent } from './tips/tips.component';
 import { TipsDetailsComponent } from './tips-details/tips-details.component';
+import { q03S02 } from './q03-s02/q03-S02.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './services/spinner.service';
 import { MemberAreaComponent } from './member-area/member-area/member-area.component';
@@ -67,6 +68,7 @@ export function createTranslateLoader(http: HttpClient) {
     AboutComponent,
     TipsComponent,
     TipsDetailsComponent,
+    q03S02,
     SpinnerComponent,
     MemberAreaComponent,
     LogoutComponent,

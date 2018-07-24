@@ -79,4 +79,10 @@ export class MyApiService {
     const headers = new HttpHeaders().set('Accept-Language', this.translate.currentLang);
     return this.http.get(myStudiesURL, {observe: 'response', headers: headers});
   }
+  getAnswerQuesstionaire3Question2(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/3/elements/s02?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
 }
