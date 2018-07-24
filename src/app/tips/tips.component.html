@@ -22,9 +22,9 @@
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
       <div *ngIf="tipData.rate!=0">
-        <a *ngFor="let it of rate">
-            <i class="fa fa-star"></i>  
-        </a>
+        <p>
+          rating
+        </p>
 
       </div>
       <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
