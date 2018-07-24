@@ -5,32 +5,69 @@
         data-auto-a11y="true"
       ></script>
 </head>
-<div class="container">
+<div *ngIf="!rateB" class="container">
     <!-- <div *ngIf="chart">
         <canvas id="canvas">{{ chart }}</canvas>
       </div> -->
 <tbody>
     <tr *ngFor="let tipData of tipsData; let z=index" class="pointer" data-toggle="modal">
-        <div class="card">
+        <div class="card" id=index>
       <td  align="center"><b><font color='1a67b7' size="3.5" ><i>{{tipData.title}}</i></font></b> </td>
       <br>
       <td align="center">{{tipData.goal}}</td>
     <!--  <button type="button" class="w3-button w3-ripple w3-red" data-dismiss="modal" (click)=" getTipDetails(tipData.id)">{{ 'Click here for details' | translate }}</button>-->
      <!-- <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]"><font color='1a67b7'>{{ 'More' | translate }}</font></a></li> -->
      <div class="icon">
-       
           <!--  <i class="fas fa-info-circle  faa-pulse animated"></i> -->
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
-      <a *ngFor="let item of starList; let i=index">  
-        <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
-       </a>  
+      
+      <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
+        <i class="fa fa-star-o"></i>   
+       </a> 
     </div>
       <br>
+      
     </tr>
   
+    
     </tbody>
-    <!-- <a *ngFor="let item of starList; let i=index " (click)="setStar(i,z)">  
-      <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
-     </a>   -->
+    
+   
 </div>
+<div *ngIf="rateB" class="container" >
+    <tbody>
+        <tr *ngFor="let tipData of tipsData; let z=index" class="pointer" data-toggle="modal">
+            <div class="card" id=index>
+          <td  align="center"><b><font color='1a67b7' size="3.5" ><i>{{tipData.title}}</i></font></b> </td>
+          <br>
+          <td align="center">{{tipData.goal}}</td>
+        <!--  <button type="button" class="w3-button w3-ripple w3-red" data-dismiss="modal" (click)=" getTipDetails(tipData.id)">{{ 'Click here for details' | translate }}</button>-->
+         <!-- <li routerLinkActive="active"><a [routerLink]="['/tipsDetails',tipData.id]"><font color='1a67b7'>{{ 'More' | translate }}</font></a></li> -->
+         <div class="icon">
+              <!--  <i class="fas fa-info-circle  faa-pulse animated"></i> -->
+            <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
+          </div>  
+          
+          <div *ngIf="tipData.id==starId">
+          <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
+              <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>  
+           </a> 
+          </div>
+          <div *ngIf="!(tipData.id==starId)">
+              <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
+                  <i class="fa fa-star-o"></i>   
+               </a> 
+              </div>
+
+        </div>
+          <br>
+          
+        </tr>
+      
+        
+        </tbody>
+        
+</div>
+
+

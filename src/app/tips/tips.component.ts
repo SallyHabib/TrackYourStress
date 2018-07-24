@@ -53,6 +53,9 @@ export class TipsComponent implements OnInit {
     title = 'Star Rating';  
     starList: boolean[] = [true,true,true,true,true]; 
     rating:number;  
+    rateB:boolean
+    starId=0;
+    rate=0
 
   
     
@@ -67,6 +70,7 @@ export class TipsComponent implements OnInit {
       this.ngOnInit();
       this.isSyncAnimated=false
       this.chart=false
+      this.rateB=false
       
     });
    }
@@ -181,15 +185,24 @@ export class TipsComponent implements OnInit {
   // public getValue(){
   //   return this.isSyncAnimated
   // }
-  setStar(data:any,z:any){
-    this.rating=data+1;                               
+  setStar(){
+    console.log("d5l hna")
+    //this.rateB=true
+    this.rating=this.rate+1;  
+    //var tableList = this.tipsData.find(function (obj: any) { return obj.Id === record.id });                           
     for(var i=0;i<=4;i++){  
-      if(i<=data){  
+      if(i<=this.rate){  
         this.starList[i]=false;  
       }  
       else{  
         this.starList[i]=true;  
       }  
    }  
+}
+setRate(id:any,i:any){
+  this.rateB=true
+  this.starId=id
+  this.rate=i
+  console.log(this.rateB)
 }  
   }
