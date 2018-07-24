@@ -20,10 +20,11 @@ export class q03S02 implements OnInit {
         }
         
     ngOnInit(){
-        const req = this.myapiService.getAnswerQuesstionaire3Question2();
-        req.subscribe( resp => {
-            const answersData = resp.body['data'];
-            console.log(answersData)
-        });
+        // const req = this.myapiService.getAnswerQuesstionaire3Question2();
+        // req.subscribe( resp => {
+        //     const answersData = resp.body['data'];
+        //     console.log(answersData)
+        // });
     }
+    
 }

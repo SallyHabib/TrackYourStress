@@ -50,6 +50,10 @@ export class TipsComponent implements OnInit {
     weatherDates = []
     //chart=Chart
     chart=false
+    title = 'Star Rating';  
+    starList: boolean[] = [true,true,true,true,true]; 
+    rating:number;  
+
   
     
   constructor(
@@ -177,5 +181,15 @@ export class TipsComponent implements OnInit {
   // public getValue(){
   //   return this.isSyncAnimated
   // }
- 
+  setStar(data:any,z:any){
+    this.rating=data+1;                               
+    for(var i=0;i<=4;i++){  
+      if(i<=data){  
+        this.starList[i]=false;  
+      }  
+      else{  
+        this.starList[i]=true;  
+      }  
+   }  
+}  
   }

@@ -10,7 +10,7 @@
         <canvas id="canvas">{{ chart }}</canvas>
       </div> -->
 <tbody>
-    <tr *ngFor="let tipData of tipsData" class="pointer" data-toggle="modal">
+    <tr *ngFor="let tipData of tipsData; let z=index" class="pointer" data-toggle="modal">
         <div class="card">
       <td  align="center"><b><font color='1a67b7' size="3.5" ><i>{{tipData.title}}</i></font></b> </td>
       <br>
@@ -22,8 +22,15 @@
           <!--  <i class="fas fa-info-circle  faa-pulse animated"></i> -->
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
+      <a *ngFor="let item of starList; let i=index">  
+        <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+       </a>  
     </div>
       <br>
     </tr>
+  
     </tbody>
+    <!-- <a *ngFor="let item of starList; let i=index " (click)="setStar(i,z)">  
+      <i class="fa" [ngClass]="{'fa-star-o':item,'fa-star':!item}"></i>   
+     </a>   -->
 </div>
