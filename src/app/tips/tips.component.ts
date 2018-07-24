@@ -55,7 +55,7 @@ export class TipsComponent implements OnInit {
     rating:number;  
     rateB:boolean
     starId=0;
-    rate=0
+    rate:any
 
   
     
@@ -100,6 +100,7 @@ export class TipsComponent implements OnInit {
              tipData['attributes']['title'],
              tipData['attributes']['name'],
              tipData['attributes']['goal'],
+             5,
              linkDetail,
          )
         );
@@ -203,6 +204,11 @@ setRate(id:any,i:any){
   this.rateB=true
   this.starId=id
   this.rate=i
+  for (const tipData of this.tipsData) {
+    if (tipData.id==id){
+      tipData.rate=i;
+    }
+  }
   console.log(this.rateB)
 }  
   }

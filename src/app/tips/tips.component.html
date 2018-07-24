@@ -21,7 +21,12 @@
           <!--  <i class="fas fa-info-circle  faa-pulse animated"></i> -->
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
-      
+      <div *ngIf="tipData.rate!=0">
+        <a *ngFor="let it of rate">
+            <i class="fa fa-star"></i>  
+        </a>
+
+      </div>
       <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
         <i class="fa fa-star-o"></i>   
        </a> 

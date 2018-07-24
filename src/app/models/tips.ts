@@ -7,6 +7,7 @@ export class Tip {
       public title: string,
       public name: string,
       public goal: string,
+      public rate: number,
       //links
       public links: string
     ) { }
