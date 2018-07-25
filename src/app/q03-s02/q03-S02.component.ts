@@ -66,7 +66,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx, {
              type: 'line',
              data: {
-               labels: ["date","value","frfrfrfr","jjj"],
+               labels: ["date","value","frfrfrfr","jjj","a","l","m","b","p","g","aa","o","lo"],
                datasets: [
                  { 
                    data:temp_max,
