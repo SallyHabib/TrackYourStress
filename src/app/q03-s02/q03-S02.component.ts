@@ -12,7 +12,7 @@ import { Chart } from 'chart.js';
 })
 export class q03S02 implements OnInit {
     answersQ02:answers[]=[]
-    values:number[]=[]
+    values=[]
     chart=false
 
     constructor(
@@ -42,15 +42,15 @@ export class q03S02 implements OnInit {
         var myChart= new Chart(ctx, {
           type: 'line',
           data: {
-            labels: ["date","value"],
+            labels: ["date","value","frfrfrfr","jjj"],
             datasets: [
               { 
-                data:[90,100,30,15],
+                data:this.values,
                 borderColor: "#3cba9f",
                 fill: false
               },
               { 
-                data:[8,4,3,2] ,
+                data:[12,13,14,15] ,
                 borderColor: "#ffcc00",
                 fill: false
               },
