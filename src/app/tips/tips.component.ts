@@ -91,6 +91,8 @@ export class TipsComponent implements OnInit {
           this.tipsData=[]
       }
       const tipsData = resp.body['data'];
+     let listR=[]
+     let k=0;
      
       for (const tipData of tipsData) {
        let linkDetail= "https://"+tipData['links']['self']
@@ -101,6 +103,7 @@ export class TipsComponent implements OnInit {
              tipData['attributes']['name'],
              tipData['attributes']['goal'],
              5,
+             [true,true,true,false,false],
              linkDetail,
          )
         );

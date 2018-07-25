@@ -8,6 +8,7 @@ export class Tip {
       public name: string,
       public goal: string,
       public rate: number,
+      public rateList: boolean[],
       //links
       public links: string
     ) { }

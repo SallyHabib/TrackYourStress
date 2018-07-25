@@ -22,14 +22,16 @@
         <fa-icon [icon]="faInfoCircle" size="lg"  (click)="getTipDetails(tipData.id)"></fa-icon>
       </div>  
       <div *ngIf="tipData.rate!=0">
-        <p>
-          rating
-        </p>
+        <a *ngFor="let item of tipData.rateList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
+          <i class="fa" [ngClass]="{'fa-star-o':!item,'fa-star':item}"></i>
+         </a> 
 
       </div>
+      <div *ngIf="tipData.rate==0">
       <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
         <i class="fa fa-star-o"></i>   
        </a> 
+      </div>
     </div>
       <br>
       
@@ -60,8 +62,8 @@
            </a> 
           </div>
           <div *ngIf="!(tipData.id==starId)">
-              <a *ngFor="let item of starList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
-                  <i class="fa fa-star-o"></i>   
+              <a *ngFor="let item of tipData.rateList; let i=index" (click)="setRate(tipData.id,i); setStar();">  
+                <i class="fa" [ngClass]="{'fa-star-o':!item,'fa-star':item}"></i>
                </a> 
               </div>
 
