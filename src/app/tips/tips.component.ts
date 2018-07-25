@@ -10,7 +10,6 @@ import {ISubscription} from 'rxjs/Subscription';
 import {DialogService} from "ng2-bootstrap-modal";
 import {TipsDialogComponent} from "./tipsDialog.component"
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import { Chart } from 'chart.js';
 
 // window.onload = function() {
 
@@ -49,7 +48,6 @@ export class TipsComponent implements OnInit {
     public isSyncAnimated:boolean
     weatherDates = []
     //chart=Chart
-    chart=false
     title = 'Star Rating';  
     starList: boolean[] = [true,true,true,true,true]; 
     rating:number;  
@@ -69,7 +67,6 @@ export class TipsComponent implements OnInit {
      this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.ngOnInit();
       this.isSyncAnimated=false
-      this.chart=false
       this.rateB=false
       
     });
@@ -148,40 +145,7 @@ export class TipsComponent implements OnInit {
     this.dialogService.addDialog(TipsDialogComponent,{message:id});
     // console.log(this.isSyncAnimated)
   }
-  chartView(){
-    this.chart=true;
-    new Chart('canvas', {
-      type: 'line',
-      data: {
-        labels: ["lolo","lo"],
-        datasets: [
-          { 
-            data: [39,41,38,35],
-            borderColor: "#3cba9f",
-            fill: false
-          },
-          { 
-            data: [12,17,18,10],
-            borderColor: "#ffcc00",
-            fill: false
-          },
-        ]
-      },
-      options: {
-        legend: {
-          display: false
-        },
-        scales: {
-          xAxes: [{
-            display: true
-          }],
-          yAxes: [{
-            display: true
-          }],
-        }
-      }
-    });
-  }
+  
   // public setvalue() {
   //   this.isSyncAnimated = false;
   //   return this.isSyncAnimated
