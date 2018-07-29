@@ -98,6 +98,7 @@ export class UserService {
   }
 
   refreshToken(oldToken: string) {
+    console.log("gh hna")
     const refreshURL = this.globals.apiEndPoint + '/api/v1/auth/refresh?token=' + oldToken;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post( refreshURL, {observe: 'response', headers: headers});

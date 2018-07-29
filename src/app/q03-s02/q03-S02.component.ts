@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { MyApiService } from '../services/API/my-api.service';
+import {TokenrefresherService} from '../services/API/tokenrefresher.service';
 import { answers }  from '../models/Answers';
 import { Chart } from 'chart.js';
 
@@ -17,7 +18,8 @@ export class q03S02 implements OnInit {
     constructor(
         private myapiService: MyApiService,
         private router: Router,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private tokenrefresher: TokenrefresherService,
       ) {
           this.ngOnInit();
           this.chart=false
@@ -92,6 +94,16 @@ export class q03S02 implements OnInit {
            });
          }
     }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData()
+          }
+        });
+      }
     });
 
     
