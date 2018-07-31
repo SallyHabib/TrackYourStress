@@ -28,7 +28,9 @@ export class q03S02 implements OnInit {
         
     ngOnInit(){
 
-        this.gettingApiData()
+        this.gettingApiData1()
+        this.gettingApiData2()
+        this.gettingApiData3()
        // this.chartView()
     }
     // chartView(){
@@ -37,9 +39,11 @@ export class q03S02 implements OnInit {
     // //    console.log(ctx)
       
     // }
-  gettingApiData(){
+  gettingApiData1(){
     const req = this.myapiService.getAnswerQuesstionaire3Question2();
     req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max = resp.body['data']['attributes']['answers'].map(resp => resp.value);
         //console.log(temp_max)
@@ -68,7 +72,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx, {
              type: 'line',
              data: {
-               labels: ["date","value","frfrfrfr","jjj","a","l","m","b","p","g","aa","o","lo"],
+               labels: ["date","value","frfrfrfr","jjj","a","l","m","b","p","g","aa","o","lo","final"],
                datasets: [
                  { 
                    data:temp_max,
@@ -97,15 +101,171 @@ export class q03S02 implements OnInit {
     }, err => {
       const status = err['status'];
       if (status === 401) {
+        console.log("refresh token")
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData()
+            this.gettingApiData1()
           }
         });
       }
     });
+    
 
     
-  }  
+  }
+
+  gettingApiData2(){
+    console.log("gh hna2")
+    const req = this.myapiService.getAnswerQuesstionaire3Question3();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max2 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            this.answersQ02.push(
+                new answers(
+                    answerData['label'],
+                    answerData['value']
+                )
+            )
+        }
+        
+        console.log(temp_max2.length+"2")
+    
+        let ctx2 = document.getElementById("canvas2")
+        
+           console.log(ctx2+"2")
+        if(ctx2){
+        if(ctx2 instanceof HTMLCanvasElement){
+            console.log("Dd")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx2, {
+             type: 'line',
+             data: {
+               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               datasets: [
+                 { 
+                   data:temp_max2,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData2()
+          }
+        });
+      }
+    });
+    
+
+    
+  }
+
+  gettingApiData3(){
+    console.log("gh hna3")
+    const req = this.myapiService.getAnswerQuesstionaire3Question4();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max3 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            this.answersQ02.push(
+                new answers(
+                    answerData['label'],
+                    answerData['value']
+                )
+            )
+        }
+        
+        console.log(temp_max3.length+"3")
+    
+        let ctx3 = document.getElementById("canvas3")
+        
+           console.log(ctx3+"3")
+        if(ctx3){
+        if(ctx3 instanceof HTMLCanvasElement){
+            console.log("Dd")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx3, {
+             type: 'line',
+             data: {
+               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               datasets: [
+                 { 
+                   data:temp_max3,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData3()
+          }
+        });
+      }
+    });
+    
+
+  }
+  
 }
