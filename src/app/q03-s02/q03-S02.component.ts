@@ -64,9 +64,10 @@ export class q03S02 implements OnInit {
 
     
         let ctx = this.elementRef.nativeElement.querySelector(`canvas`);
-           
+        
         if(ctx){
         if(ctx instanceof HTMLCanvasElement){
+         
             console.log("D")
          // var myC=new Chart(ctx,{});
            var myChart= new Chart(ctx, {
@@ -141,10 +142,13 @@ export class q03S02 implements OnInit {
     
         let ctx2 = document.getElementById("canvas2")
         
+        
            console.log(ctx2+"2")
         if(ctx2){
         if(ctx2 instanceof HTMLCanvasElement){
             console.log("Dd")
+            
+            
          // var myC=new Chart(ctx,{});
            var myChart= new Chart(ctx2, {
              type: 'line',
@@ -221,7 +225,7 @@ export class q03S02 implements OnInit {
            console.log(ctx3+"3")
         if(ctx3){
         if(ctx3 instanceof HTMLCanvasElement){
-            console.log("Dd")
+            console.log("Dd3")
          // var myC=new Chart(ctx,{});
            var myChart= new Chart(ctx3, {
              type: 'line',
