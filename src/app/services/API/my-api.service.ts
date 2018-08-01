@@ -97,4 +97,10 @@ export class MyApiService {
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }
+  getAnswerQuesstionaire3Question6(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/3/elements/s06?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
 }

@@ -13,6 +13,9 @@ import { Chart } from 'chart.js';
 })
 export class q03S02 implements OnInit {
     answersQ02:answers[]=[]
+    answersQ03:answers[]=[]
+    answersQ04:answers[]=[]
+    answersQ06:answers[]=[]
     chart=false
     //temp_max:number[]=[]
     constructor(
@@ -31,6 +34,7 @@ export class q03S02 implements OnInit {
         this.gettingApiData1()
         this.gettingApiData2()
         this.gettingApiData3()
+        this.gettingApiData4()
        // this.chartView()
     }
     // chartView(){
@@ -130,7 +134,7 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ02.push(
+            this.answersQ03.push(
                 new answers(
                     answerData['label'],
                     answerData['value']
@@ -210,7 +214,7 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ02.push(
+            this.answersQ04.push(
                 new answers(
                     answerData['label'],
                     answerData['value']
@@ -264,6 +268,81 @@ export class q03S02 implements OnInit {
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
             this.gettingApiData3()
+          }
+        });
+      }
+    });
+    
+
+  }
+  gettingApiData4(){
+    console.log("gh hna4")
+    const req = this.myapiService.getAnswerQuesstionaire3Question6();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max4 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            this.answersQ06.push(
+                new answers(
+                    answerData['label'],
+                    answerData['value']
+                )
+            )
+        }
+        
+        console.log(temp_max4.length+"4")
+    
+        let ctx4 = document.getElementById("canvas4")
+        
+           console.log(ctx4+"4")
+        if(ctx4){
+        if(ctx4 instanceof HTMLCanvasElement){
+            console.log("Dd4")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx4, {
+             type: 'line',
+             data: {
+               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               datasets: [
+                 { 
+                   data:temp_max4,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData4()
           }
         });
       }
