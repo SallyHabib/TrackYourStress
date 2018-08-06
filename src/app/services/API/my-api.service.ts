@@ -103,4 +103,16 @@ export class MyApiService {
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }
+  getAnswerQuesstionaire3Question7(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/3/elements/s07?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3Question5(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/3/elements/s05?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
 }

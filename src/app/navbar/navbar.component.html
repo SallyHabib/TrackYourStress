@@ -41,7 +41,18 @@
         <li routerLinkActive="active"><a routerLink="/reg">{{ 'Register' | translate }}</a></li>
         <li routerLinkActive="active"><a routerLink="/about">{{ 'About' | translate }}</a></li>
         <li routerLinkActive="active"><a routerLink="/tips">{{ 'Tips' | translate }}</a></li>
-        <li *ngIf="isLoggedIn"><a routerLink="/answersQuestion2">{{ 'Statstics' | translate }}</a></li>
+        <!-- <li *ngIf="isLoggedIn"><a routerLink="/answersQuestion2">{{ 'Statstics' | translate }}</a></li> -->
+        <li class="dropdown" *ngIf="isLoggedIn">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+             aria-expanded="false">{{ 'Statstics' | translate }}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li routerLinkActive="active"><a routerLink="/answersQuestion2">{{ 'Questionnaire1' | translate}}</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active"><a routerLink="/questionnaire2">{{ 'Questionnaire2' | translate }}</a></li>
+            <li role="separator" class="divider"></li>
+            <li routerLinkActive="active"><a routerLink="/answersQuestion2">{{ 'Questionnaire3' | translate }}</a></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li *ngIf="isLoggedIn"><a routerLink="/logout">{{ 'Logout' | translate }}</a></li>

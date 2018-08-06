@@ -47,6 +47,7 @@ import {DeviceDetectorModule} from 'ngx-device-detector';
 import {Globals} from './GlobalVars/globals';
 import {QuestionnaireService} from './services/questionnaire.service';
 import {TipsDialogComponent} from "./tips/tipsDialog.component"
+import {q02Component} from "./q02/q02.component";
 import {BootstrapModalModule} from "ng2-bootstrap-modal"
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 //import { IgDataChartComponent } from 'igniteui-angular2';
@@ -85,6 +86,7 @@ export function createTranslateLoader(http: HttpClient) {
     RequestPwresetComponent,
     PasswordResetComponent,
     TipsDialogComponent,
+    q02Component
    // IgDataChartComponent
   ],
   imports: [

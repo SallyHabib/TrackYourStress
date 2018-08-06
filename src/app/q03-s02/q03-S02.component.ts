@@ -35,6 +35,8 @@ export class q03S02 implements OnInit {
         this.gettingApiData2()
         this.gettingApiData3()
         this.gettingApiData4()
+        this.gettingApiData5()
+        this.gettingApiData6()
        // this.chartView()
     }
     // chartView(){
@@ -350,5 +352,152 @@ export class q03S02 implements OnInit {
     
 
   }
-  
+  gettingApiData5(){
+    console.log("gh hna5")
+    const req = this.myapiService.getAnswerQuesstionaire3Question7();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max5 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            this.answersQ06.push(
+                new answers(
+                    answerData['label'],
+                    answerData['value']
+                )
+            )
+        }
+        
+        console.log(temp_max5.length+"5")
+    
+        let ctx5 = document.getElementById("canvas5")
+        
+           console.log(ctx5+"5")
+        if(ctx5){
+        if(ctx5 instanceof HTMLCanvasElement){
+            console.log("Dd5")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx5, {
+             type: 'line',
+             data: {
+               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               datasets: [
+                 { 
+                   data:temp_max5,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData5()
+          }
+        });
+      }
+    });
+    
+
+  }
+  gettingApiData6(){
+    console.log("gh hna6")
+    const req = this.myapiService.getAnswerQuesstionaire3Question5();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max6 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            this.answersQ06.push(
+                new answers(
+                    answerData['label'],
+                    answerData['value']
+                )
+            )
+        }
+        
+        console.log(temp_max6.length+"6")
+    
+        let ctx6 = document.getElementById("canvas6")
+        
+           console.log(ctx6+"6")
+        if(ctx6){
+        if(ctx6 instanceof HTMLCanvasElement){
+            console.log("Dd6")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx6, {
+             type: 'line',
+             data: {
+               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               datasets: [
+                 { 
+                   data:temp_max6,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.gettingApiData6()
+          }
+        });
+      }
+    });
+  }
 }
