@@ -4,6 +4,10 @@ import { MyApiService } from '../services/API/my-api.service';
 import {TokenrefresherService} from '../services/API/tokenrefresher.service';
 import { answers }  from '../models/Answers';
 import { Chart } from 'chart.js';
+import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
+import {ISubscription} from 'rxjs/Subscription';
+
+
 
 
 @Component({
@@ -18,6 +22,9 @@ export class q03S02 implements OnInit {
     answersQ06:answers[]=[]
     dailyLabels:number[]=[]
     labels1:string[]=[]
+    langChangeSubscription: ISubscription;
+
+    
     chart=false
     //temp_max:number[]=[]
     constructor(
@@ -25,6 +32,7 @@ export class q03S02 implements OnInit {
         private router: Router,
         private elementRef: ElementRef,
         private tokenrefresher: TokenrefresherService,
+        private translate: TranslateService
       ) {
           this.ngOnInit();
           this.chart=false
@@ -39,6 +47,7 @@ export class q03S02 implements OnInit {
         this.gettingApiData4()
         this.gettingApiData5()
         this.gettingApiData6()
+        this.gettingApiData7()
        // this.chartView()
     }
     // chartView(){
@@ -54,6 +63,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max.reverse()
         let label1=[]
         //console.log(temp_max)
         //console.log(answersData)
@@ -64,12 +74,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ02.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ02.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label1.push("day"+c2)
             c1++;
@@ -122,7 +132,7 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData1()
+            this.ngOnInit()
           }
         });
       }
@@ -140,6 +150,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max2 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max2.reverse()
         let label2=[]
         let c1=0;
         //console.log(temp_max)
@@ -148,12 +159,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ03.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ03.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label2.push("day"+c2)
             c1++;
@@ -207,7 +218,7 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData2()
+            this.ngOnInit()
           }
         });
       }
@@ -225,6 +236,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max3 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max3.reverse()
         let label3=[]
         let c1=0;
         //console.log(temp_max)
@@ -233,12 +245,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ04.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ04.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label3.push("day"+c2)
             c1++;
@@ -289,7 +301,7 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData3()
+            this.ngOnInit()
           }
         });
       }
@@ -305,6 +317,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max4 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max4.reverse()
         let label4=[]
         let c1=0;
         //console.log(temp_max)
@@ -313,12 +326,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ06.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label4.push("day"+c2)
             c1++;
@@ -369,7 +382,7 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData4()
+            this.ngOnInit()
           }
         });
       }
@@ -385,6 +398,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max5 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max5.reverse()
         let label5=[]
         let c1=0
         //console.log(temp_max)
@@ -393,12 +407,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ06.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label5.push("day"+c2)
             c1++;
@@ -449,7 +463,7 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData5()
+            this.ngOnInit()
           }
         });
       }
@@ -465,6 +479,7 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max6 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max6.reverse()
         let label6=[]
         let c1=0;
         //console.log(temp_max)
@@ -473,12 +488,12 @@ export class q03S02 implements OnInit {
        // console.log(answersArray.length)
         for(const answerData of answersArray){
             //console.log(answerData['label'])
-            this.answersQ06.push(
-                new answers(
-                    answerData['label'],
-                    answerData['value']
-                )
-            )
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
             let c2=c1+1
             label6.push("day"+c2)
             c1++;
@@ -529,7 +544,106 @@ export class q03S02 implements OnInit {
         // token is expired
         this.tokenrefresher.refreshToken().subscribe(httpStatus => {
           if (httpStatus === 200) {
-            this.gettingApiData6()
+            this.ngOnInit()
+          }
+        });
+      }
+    });
+  }
+  gettingApiData7(){
+    console.log("gh hna7")
+    const req = this.myapiService.getAnswerQuesstionaire3Questiondaily05();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max7 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let nothing=[]
+        let privateV=[]
+        let proffesional=[]
+        let others=[]
+        //temp_max7.reverse()
+        // let label7=[]
+        // let c1=0;
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+        //answersArray.reverse();
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
+            if(answerData['value'][0]=="NOTHING"){
+              nothing.push(1)
+            }else{
+              if(answerData['value'][0]=="OTHERS"){
+                others.push(1)
+              }
+              else{
+                if(answerData['value'][0]=="PRIVATE"){
+                  privateV.push(1)
+                }else{
+                  proffesional.push(1)
+                }
+
+              }
+            }
+            // let c2=c1+1
+            // label6.push("day"+c2)
+            // c1++;
+        }
+        
+        //console.log(temp_max7.length+"7")
+    
+        let ctx7 = document.getElementById("canvas7")
+        
+           console.log(ctx7+"7")
+        if(ctx7){
+        if(ctx7 instanceof HTMLCanvasElement){
+            console.log("Dd7")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx7, {
+             type: 'line',
+             data: {
+               labels: ["others","proffesional","private","nothing"],
+               datasets: [
+                 { 
+                   data:[others.length,proffesional.length,privateV.length,nothing.length],
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.ngOnInit()
           }
         });
       }
