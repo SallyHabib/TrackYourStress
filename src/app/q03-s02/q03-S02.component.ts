@@ -16,6 +16,8 @@ export class q03S02 implements OnInit {
     answersQ03:answers[]=[]
     answersQ04:answers[]=[]
     answersQ06:answers[]=[]
+    dailyLabels:number[]=[]
+    labels1:string[]=[]
     chart=false
     //temp_max:number[]=[]
     constructor(
@@ -52,8 +54,12 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label1=[]
         //console.log(temp_max)
         //console.log(answersData)
+          let c1=0;
+       
+
         let answersArray=answersData['attributes']['answers'];
        // console.log(answersArray.length)
         for(const answerData of answersArray){
@@ -64,6 +70,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label1.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max.length)
@@ -73,13 +82,14 @@ export class q03S02 implements OnInit {
         
         if(ctx){
         if(ctx instanceof HTMLCanvasElement){
-         
+          
+       
             console.log("D")
          // var myC=new Chart(ctx,{});
            var myChart= new Chart(ctx, {
              type: 'line',
              data: {
-               labels: ["date","value","frfrfrfr","jjj","a","l","m","b","p","g","aa","o","lo","final"],
+               labels: label1,
                datasets: [
                  { 
                    data:temp_max,
@@ -130,6 +140,8 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max2 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label2=[]
+        let c1=0;
         //console.log(temp_max)
         //console.log(answersData)
         let answersArray=answersData['attributes']['answers'];
@@ -142,6 +154,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label2.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max2.length+"2")
@@ -159,7 +174,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx2, {
              type: 'line',
              data: {
-               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               labels: label2,
                datasets: [
                  { 
                    data:temp_max2,
@@ -210,6 +225,8 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max3 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label3=[]
+        let c1=0;
         //console.log(temp_max)
         //console.log(answersData)
         let answersArray=answersData['attributes']['answers'];
@@ -222,6 +239,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label3.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max3.length+"3")
@@ -236,7 +256,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx3, {
              type: 'line',
              data: {
-               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               labels: label3,
                datasets: [
                  { 
                    data:temp_max3,
@@ -285,6 +305,8 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max4 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label4=[]
+        let c1=0;
         //console.log(temp_max)
         //console.log(answersData)
         let answersArray=answersData['attributes']['answers'];
@@ -297,6 +319,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label4.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max4.length+"4")
@@ -311,7 +336,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx4, {
              type: 'line',
              data: {
-               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               labels: label4,
                datasets: [
                  { 
                    data:temp_max4,
@@ -360,6 +385,8 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max5 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label5=[]
+        let c1=0
         //console.log(temp_max)
         //console.log(answersData)
         let answersArray=answersData['attributes']['answers'];
@@ -372,6 +399,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label5.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max5.length+"5")
@@ -386,7 +416,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx5, {
              type: 'line',
              data: {
-               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               labels: label5,
                datasets: [
                  { 
                    data:temp_max5,
@@ -435,6 +465,8 @@ export class q03S02 implements OnInit {
         console.log(httpStatus)
         const answersData = resp.body['data'];
         let temp_max6 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        let label6=[]
+        let c1=0;
         //console.log(temp_max)
         //console.log(answersData)
         let answersArray=answersData['attributes']['answers'];
@@ -447,6 +479,9 @@ export class q03S02 implements OnInit {
                     answerData['value']
                 )
             )
+            let c2=c1+1
+            label6.push("day"+c2)
+            c1++;
         }
         
         console.log(temp_max6.length+"6")
@@ -461,7 +496,7 @@ export class q03S02 implements OnInit {
            var myChart= new Chart(ctx6, {
              type: 'line',
              data: {
-               labels: ["a","b","c","d","e","f","g","h","i","k","l"],
+               labels: label6,
                datasets: [
                  { 
                    data:temp_max6,
