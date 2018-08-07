@@ -111,13 +111,25 @@ export class MyApiService {
   }
   getAnswerQuesstionaire3Question5(){
     const token = localStorage.getItem('token');
-    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/9/elements/daily01?token='+token;
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/9/elements/daily06?token='+token;
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }
   getAnswerQuesstionaire3Questiondaily05(){
     const token = localStorage.getItem('token');
     const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/9/elements/daily05?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3Question08(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/9/elements/daily08?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3Question09(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/9/elements/daily09?token='+token;
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }

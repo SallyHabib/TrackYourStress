@@ -48,6 +48,8 @@ export class q03S02 implements OnInit {
         this.gettingApiData5()
         this.gettingApiData6()
         this.gettingApiData7()
+        this.gettingApiData8()
+        this.gettingApiData9()
        // this.chartView()
     }
     // chartView(){
@@ -614,6 +616,164 @@ export class q03S02 implements OnInit {
                datasets: [
                  { 
                    data:[others.length,proffesional.length,privateV.length,nothing.length],
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.ngOnInit()
+          }
+        });
+      }
+    });
+  }
+  gettingApiData8(){
+    console.log("gh hna6")
+    const req = this.myapiService.getAnswerQuesstionaire3Question08();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max8 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max8.reverse()
+        let label8=[]
+        let c1=0;
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
+            let c2=c1+1
+            label8.push("day"+c2)
+            c1++;
+        }
+        
+        console.log(temp_max8.length+"8")
+    
+        let ctx8 = document.getElementById("canvas8")
+        
+           console.log(ctx8+"8")
+        if(ctx8){
+        if(ctx8 instanceof HTMLCanvasElement){
+            console.log("Dd6")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx8, {
+             type: 'line',
+             data: {
+               labels: label8,
+               datasets: [
+                 { 
+                   data:temp_max8,
+                   borderColor: "#3cba9f",
+                   fill: false
+                 }
+               ]
+               
+             },
+             options: {
+               legend: {
+                 display: false
+               },
+               scales: {
+                 xAxes: [{
+                   display: true
+                 }],
+                 yAxes: [{
+                   display: true
+                 }],
+               }
+             }
+           });
+         }
+    }
+    }, err => {
+      const status = err['status'];
+      if (status === 401) {
+        console.log("refresh token")
+        // token is expired
+        this.tokenrefresher.refreshToken().subscribe(httpStatus => {
+          if (httpStatus === 200) {
+            this.ngOnInit()
+          }
+        });
+      }
+    });
+  }
+  gettingApiData9(){
+    console.log("gh hna9")
+    const req = this.myapiService.getAnswerQuesstionaire3Question09();
+    req.subscribe( resp => {
+        const httpStatus = resp['status'];
+        console.log(httpStatus)
+        const answersData = resp.body['data'];
+        let temp_max9 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
+        temp_max9.reverse()
+        let label9=[]
+        let c1=0;
+        //console.log(temp_max)
+        //console.log(answersData)
+        let answersArray=answersData['attributes']['answers'];
+       // console.log(answersArray.length)
+        for(const answerData of answersArray){
+            //console.log(answerData['label'])
+            // this.answersQ06.push(
+            //     new answers(
+            //         answerData['label'],
+            //         answerData['value']
+            //     )
+            // )
+            let c2=c1+1
+            label9.push("day"+c2)
+            c1++;
+        }
+        
+        console.log(temp_max9.length+"6")
+    
+        let ctx9 = document.getElementById("canvas9")
+        
+           console.log(ctx9+"9")
+        if(ctx9){
+        if(ctx9 instanceof HTMLCanvasElement){
+            console.log("Dd9")
+         // var myC=new Chart(ctx,{});
+           var myChart= new Chart(ctx9, {
+             type: 'line',
+             data: {
+               labels: label9,
+               datasets: [
+                 { 
+                   data:temp_max9,
                    borderColor: "#3cba9f",
                    fill: false
                  }
