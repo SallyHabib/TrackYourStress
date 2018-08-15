@@ -194,4 +194,64 @@ export class MyApiService {
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }
+  getAnswerQuesstionaire3Questionmonthly1(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci01?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly02(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci02?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly03(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci03?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly04(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci04?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly05(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci05?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly06(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci06?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly07(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci07?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly08(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci08?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly09(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci09?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
+  getAnswerQuesstionaire3QuestionMonthly10(){
+    const token = localStorage.getItem('token');
+    const AnswerUrl = 'https://api.dummy.trackyourhealth.net/api/v1/answersheets/questionnaires/11/elements/sci10?token='+token;
+    return this.http.get(AnswerUrl, {observe: 'response'});
+
+  }
 }
