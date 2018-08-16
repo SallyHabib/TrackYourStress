@@ -6,27 +6,33 @@ import { answers }  from '../models/Answers';
 import { Chart } from 'chart.js';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ISubscription} from 'rxjs/Subscription';
+import {DialogComponent, DialogService} from "ng2-bootstrap-modal";
 
+export interface DialogD{
+    message:number
+}
 
 @Component({
   selector: 'app-achievements',
   templateUrl: './achievements.component.html',
   styleUrls: ['./achievements.component.css']
 })
-export class achievementsComponent implements OnInit {
+export class achievementsComponent  extends DialogComponent<DialogD,null>  implements DialogD, OnInit {
+    message:number
     constructor(
         private myapiService: MyApiService,
         private router: Router,
         private elementRef: ElementRef,
         private tokenrefresher: TokenrefresherService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        dialogService: DialogService,
+
       ) {
-          this.ngOnInit();
+        super(dialogService);
           
         }
         
         ngOnInit(){
-            
         }
 }
 
