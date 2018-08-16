@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 import { TipsComponent } from './tips/tips.component';
 import { TipsDetailsComponent } from './tips-details/tips-details.component';
 import { q03S02 } from './q03-s02/q03-S02.component';
+import { achievementsComponent } from './achievements/achievements.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerService } from './services/spinner.service';
 import { MemberAreaComponent } from './member-area/member-area/member-area.component';
@@ -88,7 +89,8 @@ export function createTranslateLoader(http: HttpClient) {
     PasswordResetComponent,
     TipsDialogComponent,
     q02Component,
-    q03Component
+    q03Component,
+    achievementsComponent
    // IgDataChartComponent
   ],
   imports: [

@@ -13,6 +13,7 @@ import {RequestPwresetComponent} from './request-pwreset/request-pwreset.compone
 import { q03S02 } from './q03-s02/q03-S02.component';
 import { q02Component } from './q02/q02.component';
 import { q03Component } from './q03/q03.component';
+import {achievementsComponent} from './achievements/achievements.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'questionnaire2',component: q02Component},
   {path: 'questionnaire3',component: q03Component},
   {path: 'tipsDetails/:id',component: TipsDetailsComponent},
+  {path:'achievements',component:achievementsComponent},
 
   // else
   { path: '**', component: PageNotFoundComponent }

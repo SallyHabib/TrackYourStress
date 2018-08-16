@@ -525,12 +525,12 @@ export class QuestionnaireStructureComponent implements OnInit, OnDestroy {
         // normal message for oneTime questionnaires
         if (this.questionnaire.is_onetime === 1 || this.questionnaire.every === 1) {
           this.translate.get('SuccessSendAnswers').subscribe((res: string) => {
-            this.alertService.enterMessage(res, 0);
+            this.alertService.enterMessage(res + "you gained", 0);
           });
         } else if (this.questionnaire.is_multiple === 1 && this.questionnaire.every !== 1) {
           // say to the users, that they should fill out the questionnaire according to the date
           this.translate.get('SuccessSendAnswersAndDate', {date: nextAnswerDateString}).subscribe((res: string) => {
-            this.alertService.enterMessage(res, 0);
+            this.alertService.enterMessage(res + "you gained", 0);
           });
         }
       } else {
@@ -550,12 +550,12 @@ export class QuestionnaireStructureComponent implements OnInit, OnDestroy {
         // normal message for oneTime questionnaires
         if (this.questionnaire.is_onetime === 1 || this.questionnaire.every === 1) {
           this.translate.get('SuccessSendAnswers').subscribe((res: string) => {
-            this.alertService.enterMessage(res, 0);
+            this.alertService.enterMessage(res + "you gained", 0);
           });
         } else if (this.questionnaire.is_multiple === 1 && this.questionnaire.every !== 1) {
           // say to the users, that they should fill out the questionnaire according to the date
           this.translate.get('SuccessSendAnswersAndDate', {date: nextAnswerDateString}).subscribe((res: string) => {
-            this.alertService.enterMessage(res, 0);
+            this.alertService.enterMessage(res + "you gained", 0);
           });
         }
       } else if (status === 401) {
