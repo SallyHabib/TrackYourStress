@@ -6,11 +6,11 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="_close()">
             <span aria-hidden="true">&times;</span>
         </button>
-        <h5 class="modal-title">{{ 'unlock achievements' | translate }}</h5>
+        <h5 class="modal-title"><b><font color='1a67b7' size="3.5" ><i>{{ 'titleUnlock'| translate}} !!</i></font></b></h5>
         </div>
    <div class="modal-body">
-    <div [innerHTML]=" 'Do you want to unlock achievements'  "></div>
-   </div>
+    <div>{{ 'QuestionUnlock' | translate}}</div>
+  </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" (click)="_close()">{{ 'Close' | translate }}</button>
           <button type="button" class="btn btn-success" data-dismiss="modal"(click)="success()" >{{ 'Subscribe' | translate }}</button>
@@ -20,18 +20,3 @@
 
 </div>
 </div>
-
-
-
-  
-
-   <!-- <div class="modal-dialog">
-    <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" (click)="close()" >&times;</button>
-         <h4 class="modal-title"> <font color='1a67b7' size="3.5"><b>{{tipsDataDetails?.title}}</b></font></h4>
-            <br>
-            <td align="left">{{tipsDataDetails?.text}}</td>
-       </div>
- </div>
- </div> -->

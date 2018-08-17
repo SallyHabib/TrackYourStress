@@ -61,6 +61,10 @@
   "Close" : "Close",
   "SuccessUnsubscribe" : "Successfully unsubscribed from study.",
   "ErrorSubscribe" : "Error in unsubscribtion.",
+  "SuccessUnlockAchievements":"Successfully unlocked Achievements.",
+  "ErrorUnlockAchievements":"You haven't unlocked achievements",
+  "QuestionUnlock":"Do you want to unlock Achievements ?",
+  "titleUnlock":"Unlock Achievements",
 
   "SuccessSendAnswers" : "Thank you very much for submitting this questionnaire.",
   "SuccessSendAnswersAndDate" : "Thank you very much for submitting this questionnaire. Please submit again on {{date}}.",

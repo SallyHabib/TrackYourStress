@@ -61,6 +61,10 @@
   "Close" : "Schließen",
   "SuccessUnsubscribe" : "Erfolgreich von Studie abgemeldet.",
   "ErrorSubscribe" : "Fehler beim abmelden.",
+  "SuccessUnlockAchievements":"Erfolgreich freigeschaltet Erfolge.",
+  "ErrorUnlockAchievements":"Du hast keine Erfolge freigeschaltet",
+  "QuestionUnlock":"Möchtest du Erfolge freischalten ?",
+  "titleUnlock":"Schalte Erfolge frei",
 
   "SuccessSendAnswers" : "Vielen Dank für die Beantwortung des Fragebogens.",
   "SuccessSendAnswersAndDate" : "Vielen Dank für die Beantwortung des Fragebogens. Bitte füllen Sie diesen Fragebogen wieder am {{date}} aus.",
