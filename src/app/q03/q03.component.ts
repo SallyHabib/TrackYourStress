@@ -6,6 +6,8 @@ import { answers }  from '../models/Answers';
 import { Chart } from 'chart.js';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ISubscription} from 'rxjs/Subscription';
+import { AlertService } from '../services/alert.service';
+
 
 
 @Component({
@@ -20,7 +22,9 @@ export class q03Component implements OnInit {
         private router: Router,
         private elementRef: ElementRef,
         private tokenrefresher: TokenrefresherService,
-        private translate: TranslateService
+        private translate: TranslateService,
+        private alertService: AlertService,
+
       ) {
           this.ngOnInit();
           
@@ -45,6 +49,12 @@ export class q03Component implements OnInit {
             req.subscribe( resp => {
                 const httpStatus = resp['status'];
                 console.log(httpStatus)
+                // if(httpStatus == 200){
+               
+                //     this.alertService.enterMessage("ya rabbbb", 0);
+                  
+                //   this.router.navigate(['/member/mystudies']);
+                // }
                 const answersData = resp.body['data'];
                 //let temp_max7 = resp.body['data']['attributes']['answers'].map(resp => resp.value);
                 let One=[]

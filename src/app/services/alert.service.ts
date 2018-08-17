@@ -9,6 +9,7 @@ export class AlertService {
   private keepAfterNavigationChange = false;
 
   getAlert(): Observable<any> {
+    console.log("get alert");
     return this.alertMessage.asObservable();
   }
 
@@ -21,11 +22,13 @@ export class AlertService {
         break;
       case 1:
         notificationClass = 'alert alert-danger alert-dismissible';
+        
         break;
       default:
         notificationClass = 'alert alert-danger alert-dismissible';
     }
 
+    console.log(newmess)
     this.alertMessage.next({message: newmess, notificationType: notificationClass});
     this.keepAfterNavigationChange = true;
   }

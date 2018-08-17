@@ -52,6 +52,7 @@ import {q02Component} from "./q02/q02.component";
 import {q03Component} from "./q03/q03.component";
 import {BootstrapModalModule} from "ng2-bootstrap-modal"
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 //import { IgDataChartComponent } from 'igniteui-angular2';
 
 
@@ -101,6 +102,7 @@ export function createTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     BootstrapModalModule,
     FontAwesomeModule,
+    FlashMessagesModule.forRoot(),
 
     FormsModule,
     HttpClientModule,
