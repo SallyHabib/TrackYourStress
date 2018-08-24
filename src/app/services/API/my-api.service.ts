@@ -254,4 +254,27 @@ export class MyApiService {
     return this.http.get(AnswerUrl, {observe: 'response'});
 
   }
+  updateMyPoints(points: number) {
+    const token = localStorage.getItem('token');
+    const updatePointsURL = this.globals.apiEndPoint + '/api/v1/studies/1/gamification/data?token=' + token;
+    const reqJsonData = {
+      "data" : {
+        "type" : "gamifications",
+        "attributes" : {
+          "points" : points,
+          "data" : {
+            "key" : "value",
+            "foo" : 1234,
+            "test" : true,
+            "nested" : {
+              "attribute" : "allowed"
+            }
+          }
+        }
+      }
+    };
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.patch(updatePointsURL, reqJsonData, {observe: 'response', headers: headers});
+  }
+
 }

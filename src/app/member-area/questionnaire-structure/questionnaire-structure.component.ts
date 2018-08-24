@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { QuestionnaireApiService } from '../../services/API/questionnaire-api.service';
 import { SpinnerService } from '../../services/spinner.service';
+import { MyApiService } from '../../services/API/my-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionnaireStructure } from '../../models/questionnaire-structure';
 import { Router } from '@angular/router';
@@ -42,6 +43,7 @@ export class QuestionnaireStructureComponent implements OnInit, OnDestroy {
     private spinnerService: SpinnerService,
     private alertService: AlertService,
     private route: ActivatedRoute,
+    private myapiService: MyApiService,
     private router: Router,
     private tokenrefresher: TokenrefresherService,
     private translate: TranslateService,
@@ -525,12 +527,22 @@ export class QuestionnaireStructureComponent implements OnInit, OnDestroy {
         // normal message for oneTime questionnaires
         if (this.questionnaire.is_onetime === 1 || this.questionnaire.every === 1) {
           this.translate.get('SuccessSendAnswers').subscribe((res: string) => {
-            this.alertService.enterMessage(res + "you gained", 0);
+            this.alertService.enterMessage(res + "you gained 200 points", 0);
+          });
+          const req = this.myapiService.updateMyPoints(200);
+          req.subscribe( resp => {
+              const httpStatus = resp['status'];
+              console.log(resp)
           });
         } else if (this.questionnaire.is_multiple === 1 && this.questionnaire.every !== 1) {
           // say to the users, that they should fill out the questionnaire according to the date
           this.translate.get('SuccessSendAnswersAndDate', {date: nextAnswerDateString}).subscribe((res: string) => {
-            this.alertService.enterMessage(res + "you gained", 0);
+            this.alertService.enterMessage(res + "you gained 200 points", 0);
+          });
+          const req = this.myapiService.updateMyPoints(200);
+          req.subscribe( resp => {
+              const httpStatus = resp['status'];
+              console.log(resp)
           });
         }
       } else {
@@ -550,12 +562,22 @@ export class QuestionnaireStructureComponent implements OnInit, OnDestroy {
         // normal message for oneTime questionnaires
         if (this.questionnaire.is_onetime === 1 || this.questionnaire.every === 1) {
           this.translate.get('SuccessSendAnswers').subscribe((res: string) => {
-            this.alertService.enterMessage(res + "you gained", 0);
+            this.alertService.enterMessage(res + "you gained 100 points", 0);
+          });
+          const req = this.myapiService.updateMyPoints(100);
+          req.subscribe( resp => {
+              const httpStatus = resp['status'];
+              console.log(resp)
           });
         } else if (this.questionnaire.is_multiple === 1 && this.questionnaire.every !== 1) {
           // say to the users, that they should fill out the questionnaire according to the date
           this.translate.get('SuccessSendAnswersAndDate', {date: nextAnswerDateString}).subscribe((res: string) => {
-            this.alertService.enterMessage(res + "you gained", 0);
+            this.alertService.enterMessage(res + "you gained 100 points", 0);
+          });
+          const req = this.myapiService.updateMyPoints(100);
+          req.subscribe( resp => {
+              const httpStatus = resp['status'];
+              console.log(resp)
           });
         }
       } else if (status === 401) {
