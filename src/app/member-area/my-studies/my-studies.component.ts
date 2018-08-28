@@ -133,5 +133,27 @@ export class MyStudiesComponent implements OnInit, OnDestroy {
     this.selectedStudyNameJson = { 'selectedStudyName' : studyName};
     this.selectedStudyId = studyId;
   }
+  unlockAchievements(){
+    const req = this.myapiService.UnlockAchievements(this.selectedStudyId);
+    req.subscribe( resp => {
+      console.log(resp)
+      const httpStatus = resp['status'];
+      console.log(httpStatus);
+      if (httpStatus === 204) {
+        this.alertService.enterMessage("You have unlocked this achievement", 0);
+
+      }
+   
+     
+    }, err => {
+      const status = err['status'];
+      console.log(status)
+      if(status===400){
+       
+        this.alertService.enterMessage("You have already unlocked this achievement", 1);
+      }
+    }
+  );
+  }
 
 }

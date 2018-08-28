@@ -23,6 +23,7 @@
           <th>{{ 'Private' | translate }}</th>
           <th>{{ 'Running' | translate }}</th>
           <th>{{ 'Unsubscribe' | translate }}</th>
+          <th>{{ 'Achievements' | translate }}</th>
         </tr>
       </thead>
 
@@ -47,6 +48,10 @@
                     data-toggle="modal" data-target="#unsubscribeModal">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> {{ 'Unsubscribe' | translate }}
             </button>
+          </td>
+          <td align="center">
+              <button type="button" class="btn btn-default" data-dismiss="modal" (click)="changeSelectedStudy(studie.name, studie.id);unlockAchievements();">{{ 'unlockAchievements' | translate }}</button>
+
           </td>
         </tr>
       </tbody>

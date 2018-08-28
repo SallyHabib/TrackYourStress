@@ -276,5 +276,11 @@ export class MyApiService {
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.patch(updatePointsURL, reqJsonData, {observe: 'response', headers: headers});
   }
+  UnlockAchievements(studyID: number){
+    const token = localStorage.getItem('token');
+    const AchUrl = 'https://api.dummy.trackyourhealth.net/api/v1/achievements/'+studyID+'/unlock?token='+token;
+    return this.http.post(AchUrl, {observe: 'response'});
+
+  }
 
 }
