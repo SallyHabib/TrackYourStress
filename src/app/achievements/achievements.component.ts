@@ -52,7 +52,8 @@ export class achievementsComponent implements OnInit {
                 new HighScore(
                   highscore['attributes']['name'],
                   highscore['attributes']['email'],
-                  highscore['attributes']['points']
+                  highscore['attributes']['points'],
+                  highscore['attributes']['picture'],
                 )
               );
             }

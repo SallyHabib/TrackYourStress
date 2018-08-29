@@ -6,7 +6,9 @@ export class HighScore {
       // attributes
       public name: string,
       public email: string,
-     public points:number
+     public points:number,
+     public picture: string,
+
     ) { }
   }
   

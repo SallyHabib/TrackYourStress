@@ -7,6 +7,7 @@
         <th>{{ 'Name' | translate }}</th>
         <th>{{ 'Email' | translate }}</th>
         <th>{{ 'Points' | translate }}</th>
+        <th>{{ 'Pictures' | translate }}</th>
       </tr>
     </thead>
 
@@ -16,6 +17,7 @@
         <td align="center">{{highScore.name}}</td>
         <td align="center">{{highScore.email}}</td>
         <td align="center">{{highScore.points}}</td>
+        <td align="center"><img src="{{highScore.picture}}" width="100" height="100"></td>
 
         <!-- <td align="center">
           <div *ngIf="studie.isPrivate === 1; else publicTag" class="glyphicon glyphicon-ok"></div>
