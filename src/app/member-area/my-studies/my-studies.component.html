@@ -24,6 +24,7 @@
           <th>{{ 'Running' | translate }}</th>
           <th>{{ 'Unsubscribe' | translate }}</th>
           <th>{{ 'Achievements' | translate }}</th>
+          <th>{{ 'High Scores' | translate }}</th>
         </tr>
       </thead>
 
@@ -53,6 +54,10 @@
               <button type="button" class="btn btn-default" data-dismiss="modal" (click)="changeSelectedStudy(studie.name, studie.id);unlockAchievements();">{{ 'unlockAchievements' | translate }}</button>
 
           </td>
+          <td align="center">
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="changeSelectedStudy(studie.name, studie.id);HighScores();">{{ 'HighScores' | translate }}</button>
+
+        </td>
         </tr>
       </tbody>
     </table>

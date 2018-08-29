@@ -6,6 +6,8 @@ import { AlertService } from '../services/alert.service';
 import { Subject } from 'rxjs/Subject';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ISubscription} from 'rxjs/Subscription';
+import { HighScore } from '../models/HighScores';
+
 
 @Component({
   selector: 'app-achievements',
@@ -15,11 +17,13 @@ import {ISubscription} from 'rxjs/Subscription';
 export class achievementsComponent implements OnInit {
     appearence:boolean
     langChangeSubscription: ISubscription;
+    highscores:HighScore[]=[]
 
    
     constructor(
         private myapiService: MyApiService,
         private router: Router,
+        private route: ActivatedRoute,
         private elementRef: ElementRef,
         private tokenrefresher: TokenrefresherService,
         private alertService: AlertService,
@@ -36,7 +40,25 @@ export class achievementsComponent implements OnInit {
         }
 
         ngOnInit() {
-    
+          let id = this.route.snapshot.paramMap.get('studyId');
+          const req=  this.myapiService.getGamificationHighScore(Number(id));
+          req.subscribe( resp => {
+            const HighScores= resp['body']['data'];
+          //  console.log(HighScores)
+         //   this.highscores=HighScores;
+            for (const highscore of HighScores) {
+              //console.log(  highscore['attributes']['name'],)
+              this.highscores.push(
+                new HighScore(
+                  highscore['attributes']['name'],
+                  highscore['attributes']['email'],
+                  highscore['attributes']['points']
+                )
+              );
+            }
+          
+          });
+          
       }
        _close() {
         var mod = document.getElementById("di");

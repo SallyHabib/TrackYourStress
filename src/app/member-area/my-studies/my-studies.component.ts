@@ -7,6 +7,8 @@ import { AlertService } from '../../services/alert.service';
 import {TokenrefresherService} from '../../services/API/tokenrefresher.service';
 import {LangChangeEvent, TranslateService} from '@ngx-translate/core';
 import {ISubscription} from 'rxjs/Subscription';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-my-studies',
@@ -31,7 +33,9 @@ export class MyStudiesComponent implements OnInit, OnDestroy {
     private studiesService: StudiesApiService,
     private alertService: AlertService,
     private tokenrefresher: TokenrefresherService,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router,
+
   ) {
     // listen to language changes
     this.langChangeSubscription = this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -155,5 +159,10 @@ export class MyStudiesComponent implements OnInit, OnDestroy {
     }
   );
   }
-
+  HighScores(){
+ 
+      this.router.navigate(['/achievements'+"/"+this.selectedStudyId]);
+    
+    
+  }
 }

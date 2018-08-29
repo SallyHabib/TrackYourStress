@@ -282,5 +282,12 @@ export class MyApiService {
     return this.http.post(AchUrl, {observe: 'response'});
 
   }
+  getGamificationHighScore(studyID: number){
+    const token = localStorage.getItem('token');
+    const HighUrl = 'https://api.dummy.trackyourhealth.net/api/v1/studies/'+studyID+'/gamification/highscores?token='+token;
+    return this.http.get(HighUrl, {observe: 'response'});
+
+
+  }
 
 }

@@ -28,7 +28,7 @@ const routes: Routes = [
   {path: 'questionnaire2',component: q02Component},
   {path: 'questionnaire3',component: q03Component},
   {path: 'tipsDetails/:id',component: TipsDetailsComponent},
-  {path:'achievements',component:achievementsComponent},
+  {path:'achievements/:studyId',component:achievementsComponent},
 
   // else
   { path: '**', component: PageNotFoundComponent }
